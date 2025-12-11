@@ -143,22 +143,179 @@
             <div class="text-box">
                 <h3>神秘故事--绘本阅读</h3>
                 <!-- 翻页改变文字与节数 -->
-                <h2>林间初遇--第一节</h2>
+                <h2 id="chapter-title">林间初遇--第一节</h2>
             </div>
         </div>
         <!-- 翻页更换图片 -->
-        <img src="../pic/mys/book/p0.jpg" alt="绘本图片">
+        <img id="book-image" src="../pic/mys/book/p0.jpg" alt="绘本图片">
+        <!-- 视频容器（默认隐藏） -->
+        <video id="book-video" src="../pic/mys/book/p-video.mp4" controls style="display:none; width:975px; margin:175px auto auto auto;"></video>
         <div class="page-box">
-            <a href="#"></a>
+            <a href="#" id="prev-btn"></a>
             <div class="text">
                 <!-- 跟随页面更改上下页按钮 -->
-                <div class="last-page">上一页</div>
+                <div class="last-page" id="prev-text">上一页</div>
                 <div class="divde">/</div>
-                <div class="next-page">下一页</div>
+                <div class="next-page" id="next-text">下一页</div>
             </div>
-            <a href="#"></a>
+            <a href="#" id="next-btn"></a>
         </div>
     </div>
+
+    <script>
+        // 章节数据配置
+        const chapters = [
+            {
+                name: '林间初遇',
+                section: '第一节',
+                pages: [
+                    { type: 'image', src: '../pic/mys/book/p0.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p1.png' },
+                    { type: 'image', src: '../pic/mys/book/p2.png' },
+                    { type: 'image', src: '../pic/mys/book/p3.png' },
+                    { type: 'image', src: '../pic/mys/book/p4.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p5.jpg' }
+                ]
+            },
+            {
+                name: '轻摘慢收',
+                section: '第二节',
+                pages: [
+                    { type: 'image', src: '../pic/mys/book/p6.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p7.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p8.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p9.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p10.jpg' }
+                ]
+            },
+            {
+                name: '巧手成药',
+                section: '第三节',
+                pages: [
+                    { type: 'image', src: '../pic/mys/book/p11.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p12.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p13.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p14.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p15.jpg' }
+                ]
+            },
+            {
+                name: '草药有灵',
+                section: '第四节',
+                pages: [
+                    { type: 'image', src: '../pic/mys/book/p16.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p17.png' },
+                    { type: 'image', src: '../pic/mys/book/p18.png' },
+                    { type: 'image', src: '../pic/mys/book/p19.jpg' },
+                    { type: 'image', src: '../pic/mys/book/p20.jpg' }
+                ]
+            },
+            {
+                name: '动态绘本',
+                section: '第五节',
+                pages: [
+                    { type: 'video', src: '../pic/mys/book/p-video.mp4' },
+                    { type: 'image', src: '../pic/mys/book/p21.jpg' }
+                ]
+            }
+        ];
+
+        // 当前状态
+        let currentChapter = 0;
+        let currentPage = 0;
+
+        // 从URL参数获取起始章节
+        const urlParams = new URLSearchParams(window.location.search);
+        const startChapter = parseInt(urlParams.get('chapter')) || 0;
+        currentChapter = Math.min(Math.max(startChapter, 0), chapters.length - 1);
+
+        // DOM 元素
+        const chapterTitle = document.getElementById('chapter-title');
+        const bookImage = document.getElementById('book-image');
+        const bookVideo = document.getElementById('book-video');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const prevText = document.getElementById('prev-text');
+        const nextText = document.getElementById('next-text');
+
+        // 更新页面显示
+        function updateDisplay() {
+            const chapter = chapters[currentChapter];
+            const page = chapter.pages[currentPage];
+
+            // 更新章节标题
+            chapterTitle.textContent = `${chapter.name}--${chapter.section}`;
+
+            // 显示图片或视频
+            if (page.type === 'video') {
+                bookImage.style.display = 'none';
+                bookVideo.style.display = 'block';
+                bookVideo.src = page.src;
+            } else {
+                bookVideo.style.display = 'none';
+                bookVideo.pause();
+                bookImage.style.display = 'block';
+                bookImage.src = page.src;
+            }
+
+            // 更新按钮状态
+            const isFirstPage = currentChapter === 0 && currentPage === 0;
+            const isLastPage = currentChapter === chapters.length - 1 && 
+                               currentPage === chapter.pages.length - 1;
+
+            prevText.style.color = isFirstPage ? 'rgba(139, 86, 52, 0.3)' : 'rgba(139, 86, 52, 0.8)';
+            nextText.style.color = isLastPage ? 'rgba(139, 86, 52, 0.3)' : 'rgba(139, 86, 52)';
+            
+            prevBtn.style.opacity = isFirstPage ? '0.3' : '1';
+            nextBtn.style.opacity = isLastPage ? '0.3' : '1';
+        }
+
+        // 上一页
+        function goPrev() {
+            if (currentPage > 0) {
+                currentPage--;
+            } else if (currentChapter > 0) {
+                currentChapter--;
+                currentPage = chapters[currentChapter].pages.length - 1;
+            }
+            updateDisplay();
+        }
+
+        // 下一页
+        function goNext() {
+            const chapter = chapters[currentChapter];
+            if (currentPage < chapter.pages.length - 1) {
+                currentPage++;
+            } else if (currentChapter < chapters.length - 1) {
+                currentChapter++;
+                currentPage = 0;
+            }
+            updateDisplay();
+        }
+
+        // 绑定事件
+        prevBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            goPrev();
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            goNext();
+        });
+
+        prevText.addEventListener('click', goPrev);
+        nextText.addEventListener('click', goNext);
+
+        // 键盘导航
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') goPrev();
+            if (e.key === 'ArrowRight') goNext();
+        });
+
+        // 初始化显示
+        updateDisplay();
+    </script>
 </body>
 
 </html>
