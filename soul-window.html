@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <title>草药仙踪</title>
+    <style>
+        .window {
+            width: 785px;
+            height: 661px;
+            background-image: url(./pic/soul/pic-soul-window.png);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+            
+        .window .close-btn {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            line-height: 0;
+            position: absolute;
+            top: 94px;
+            right: 108px;
+        }
+
+        .window .close-btn svg {
+            display: block;
+        }
+
+        .window h1{
+            margin-top: 95px;
+            height: 28px;
+            line-height: 28px;
+            font-size: 26px;
+            color: #845241;
+        }
+
+        .window img{
+            width: 539px;
+            height: 170px;
+            margin-top: 23px;
+        }
+
+        .window .list {
+            width: 557px;
+            height: 231px;
+            margin-top: 28px;
+            /* display: flex;
+            flex-direction: column;
+            justify-content: space-between; */
+        }
+
+        .window .list dl dt {
+            width: 364px;
+            height: 23px;
+            font-weight: normal;
+            font-size: 18px;
+            color: #9D6345;
+            line-height: 23px;
+        }
+
+        .window .list dl dt span{
+            font-family: sans-serif;
+            font-size: 18px;
+            color: #9D6345;
+        }
+
+        .window .list dl dd {
+            margin-top: 8px;
+            margin-left: 0;
+            position: relative;
+            padding-left: 1.4em;
+        }
+
+        .window .list dl dd li {
+            list-style: disc;
+            font-size: 16px;
+            color: #535353;
+            line-height: 25px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="window">
+        <button class="close-btn">
+            <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                    d="M15 30C6.72 30 0 23.28 0 15C0 6.72 6.72 0 15 0C23.28 0 30 6.72 30 15C30 23.28 23.28 30 15 30ZM15 1.425C7.53 1.425 1.425 7.53 1.425 15C1.425 22.47 7.515 28.575 15 28.575C22.485 28.575 28.575 22.485 28.575 15C28.575 7.515 22.47 1.425 15 1.425Z"
+                    fill="#845241" />
+                <path
+                    d="M16.0809 15L21.7959 9.28504C22.0809 9.00004 22.0809 8.53504 21.7959 8.20504L21.7509 8.16004C21.4659 7.87504 21.0009 7.87504 20.7159 8.16004L15.0009 13.92L9.28594 8.20504C9.00094 7.92004 8.53594 7.92004 8.25094 8.20504L8.20594 8.25004C7.92094 8.53504 7.92094 9.00004 8.20594 9.33004L13.9209 15L8.20594 20.715C7.92094 21 7.92094 21.465 8.20594 21.795L8.25094 21.84C8.53594 22.125 9.00094 22.125 9.28594 21.84L15.0009 16.08L20.7159 21.795C21.0009 22.08 21.4659 22.08 21.7509 21.795L21.7959 21.75C22.0809 21.465 22.0809 21 21.7959 20.67L16.0809 15Z"
+                    fill="#845241" />
+            </svg>
+        </button>
+        <h1>仙灵本体与药效</h1> 
+        <img src="./pic/soul/pic-window-1.png" alt="">
+        <div class="list">
+            <dl>
+                <dt><span>【</span>核心药效<span>】</span></dt>
+                <dd>
+                    <li>外感风热： 用于 发热、轻微怕风、头痛、咽喉肿痛、口渴。金银花能从体表发散风热邪气，尤其擅长清解咽喉部的热毒，快速缓解喉咙痛。</li>
+                    <li>温病发热：在中医温病学中，金银花是“卫气营血”各个阶段都能使用的要药。它能清气分热，也能透热转气，防止病邪深入。</li>
+                    <li>热毒疮痈： 用于痘痘、疖子、丹毒， 肺痈（肺脓肿）、肠痈（阑尾炎）。内服与外用（煎汤清洗）均可。 </li>
+                    <li>热毒血痢： 便下脓血，伴有肛门灼热、腹痛。 清除肠道内的热毒，凉血止痢。</li>
+                </dd>
+            </dl>
+        </div>
+    </div>
+</body>
+
+</html>

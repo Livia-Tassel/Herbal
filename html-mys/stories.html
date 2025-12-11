@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <title>草药仙踪</title>
+    <style>
+        body {
+            background-color: #E8DBBD;
+            background-image: url(../pic/mys/pic-bg-book.png), url(../pic/pic-background.png);
+            background-repeat: no-repeat, repeat;
+            background-position: center top, center top;
+            background-size: 1280px auto, auto;
+        }
+
+        .wrapper {
+            position: relative;
+        }
+
+        .wrapper .back {
+            width: 281px;
+            height: 79px;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            left: 40px;
+            top: 27px;
+        }
+
+        .back .return-button {
+            width: 43px;
+            height: 79px;
+            background-image: url(../pic/pic-ink@2x.png);
+            background-size: 43px 79px;
+            background-repeat: no-repeat;
+            text-align: center;
+            font-size: 24px;
+            color: #FFFFFF;
+            line-height: 30px;
+            padding: 10px 9px;
+        }
+
+        .back .text-box {
+            width: 220px;
+            height: 79px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back .text-box h2 {
+            width: 220px;
+            height: 25px;
+            padding-top: 6px;
+            line-height: 19px;
+            font-size: 18px;
+            color: #8B5634;
+            text-align: left;
+        }
+
+        .back .text-box h3 {
+            width: 220px;
+            height: 21px;
+            font-size: 14px;
+            color: rgba(42, 42, 42, 0.4);
+            text-align: left;
+            line-height: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1.5px solid #8B5634;
+            display: inline-block;
+            box-sizing: border-box;
+            margin-top: 16px;
+        }
+
+        .wrapper img {
+            width: 975px;
+            margin: auto auto;
+            margin-top: 175px;
+        }
+
+        .wrapper .page-box {
+            display: flex;
+            width: 205px;
+            height: 26px;
+            position: absolute;
+            justify-content: space-between;
+            top: 725px;
+            right: 50.25px;
+        }
+
+        .wrapper .page-box .text {
+            width: 170px;
+            height: 26px;
+            font-size: 24px;
+            color: rgba(139, 86, 52);
+            text-align: center;
+            line-height: 26px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .wrapper .page-box .text .last-page {
+            width: 72px;
+            color: rgba(139, 86, 52, 0.5);
+        }
+
+        .wrapper .page-box .text .divde {
+            color: rgba(139, 86, 52);
+        }
+
+        .wrapper .page-box .text .next-page {
+            width: 72px;
+            color: rgba(139, 86, 52);
+        }
+
+        .wrapper .page-box a {
+            width: 8.73px;
+            height: 16px;
+            margin: 5px 0;
+            background-image: url(../pic/svg-rightarrow.svg);
+            background-size: contain;
+        }
+
+        /* 第一个 a 翻转成左箭头 */
+        .wrapper .page-box a:first-of-type {
+            transform: scaleX(-1);
+        }
+
+        .wrapper .page-box a:last-of-type {
+            transform: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="back">
+            <a href="../mys.html">
+                <div class="return-button">返回</div>
+            </a>
+            <div class="text-box">
+                <h3>神秘故事--绘本阅读</h3>
+                <!-- 翻页改变文字与节数 -->
+                <h2>林间初遇--第一节</h2>
+            </div>
+        </div>
+        <!-- 翻页更换图片 -->
+        <img src="../pic/mys/book/p0.jpg" alt="绘本图片">
+        <div class="page-box">
+            <a href="#"></a>
+            <div class="text">
+                <!-- 跟随页面更改上下页按钮 -->
+                <div class="last-page">上一页</div>
+                <div class="divde">/</div>
+                <div class="next-page">下一页</div>
+            </div>
+            <a href="#"></a>
+        </div>
+    </div>
+</body>
+
+</html>

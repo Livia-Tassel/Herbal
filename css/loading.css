@@ -1,0 +1,48 @@
+body {
+  background-color: #E8DBBD;
+  background-image: url(../pic/home/pic-bg-load.png), url(../pic/pic-background.png);
+  background-repeat: no-repeat,repeat;
+  background-position: center top,center top;
+}
+/* header在base中已经定义完全 */
+.content .wrapper{
+  margin: 0 auto;
+  height: 674px;
+  background-image: url(../pic/home/pic-start.png);
+  background-position: center top;
+  background-repeat: no-repeat;
+  font-size: 0px;
+}
+
+.bar {
+  margin: 0 auto;
+  height: 112px;
+}
+
+.bar .barbox{
+  margin: 0 auto;
+  height: 112px;
+  width: 782px;
+}
+
+.bar .barbox .text{
+  margin-left: 240px;
+  margin-top: 7px;
+  margin-right: 10px;
+  font-size: 22px;
+  line-height: 23px;
+  display: inline-block;
+}
+
+.bar .barbox .img{
+  width: 28px;
+  height: 28px;
+}
+
+.bar .barbox .loadingbar {
+  width: 782px;
+  height: 9px;
+  margin-top: 25px;
+  background-color: #7E5A5A;
+  border-radius: 10px;
+}

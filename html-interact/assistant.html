@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <title>草药仙踪</title>
+    <style>
+        .wrapper {
+            position: relative;
+            flex-direction: column;
+        }
+
+        .wrapper .back {
+            width: 281px;
+            height: 79px;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            left: 40px;
+            top: 27px;
+        }
+
+        .back .return-button {
+            width: 43px;
+            height: 79px;
+            background-image: url(../pic/pic-ink@2x.png);
+            background-size: 43px 79px;
+            background-repeat: no-repeat;
+            text-align: center;
+            font-size: 24px;
+            color: #FFFFFF;
+            line-height: 30px;
+            padding: 10px 9px;
+        }
+
+        .back .text-box {
+            width: 220px;
+            height: 79px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back .text-box h2 {
+            width: 220px;
+            height: 25px;
+            padding-top: 6px;
+            line-height: 19px;
+            font-size: 18px;
+            color: #8B5634;
+            text-align: left;
+        }
+
+        .back .text-box h3 {
+            width: 220px;
+            height: 21px;
+            font-size: 14px;
+            color: rgba(42, 42, 42, 0.4);
+            text-align: left;
+            line-height: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1.5px solid #8B5634;
+            display: inline-block;
+            box-sizing: border-box;
+            margin-top: 16px;
+        }
+
+        .wrapper h1 {
+            margin: 0 auto;
+            margin-top: 118px;
+            width: 859px;
+            height: 38px;
+            line-height: 19px;
+            font-size: 18px;
+            color: #808080;
+        }
+
+        .wrapper .content{
+            width: 917px;
+            height: 495px;
+            background-image: url(../pic/interact/assistant/svg-box-health.svg);
+            margin: 0 auto;
+            margin-top: 40px;
+            display: flex;
+            justify-content: space-between;
+            z-index:2;
+            position: relative;
+        }
+
+        .content .flower{
+            height: 495px;
+            width: 56px;
+            background-image:   url(../pic/pic-goldflower.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 36px 36px;
+        }
+        /* 向右突出10px */
+
+        .content .question{
+            height: 495px;
+            width: 705px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .content .head {
+            width: 705px;
+            height: 19px;
+            margin-top: 50px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .content .head h2 {
+            width: 432px;
+            height: 19px;
+            line-height: 19px;
+            font-size: 18px;
+            color: #8B5634;
+            text-align: left;
+            display: inline-block;
+        }
+
+        .content .question .test-box{
+            height: 310px;
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+            margin-top: 40px;
+            /* background-color: pink; */
+        }
+
+        .content .question .fieldset{
+            height: 46px;
+            /* background-color: pink; */
+            line-height: 17px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;            
+        }
+
+        .content .question .fieldset legend{
+            height: 17px;
+            line-height: 17px;
+            font-size: 16px;
+            color: #746A63;
+            text-align: left;
+            /* background-color: hotpink; */
+        }
+
+        .content .question .fieldset .option {
+            height: 17px;
+            display: flex;
+            /* background-color: yellow; */
+        }
+
+        .content .question .fieldset label {
+            height: 17px;
+            line-height: 17px;
+            color: #958B84;
+            text-align: left;
+            margin-right: 30px;
+        }
+
+        .content .question .fieldset input[type="radio"] {
+            appearance: none;
+            /* -webkit-appearance: none;
+            -moz-appearance: none; */
+            width: 13px;
+            height: 13px;
+            line-height: 17px;
+            display: inline-block; 
+            margin: 2px 3px 2px 0px;
+            border: 1.5px solid #958B84; 
+            border-radius: 50%;
+            background-color: transparent;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .content .question .fieldset input[type="radio"]:checked::before {
+            content: "";
+            position: absolute;
+            top: 1.5px;
+            left: 1.5px;
+            width: 7px;
+            height: 7px;
+            background-color: #AA4200;
+            border-radius: 50%;
+            transition: background-color 0.3s ease;
+        }
+
+        .content .question .fieldset input[type="radio"]:checked + label {
+            color: #AA4200;
+        }
+
+        .img-herb {
+            position: absolute;
+            width: 247px;
+            height: 399px;
+            opacity: 0.17;
+            background-image: url(../pic/soul/test/pic-herb.png);
+            top: 0px;
+            right: 0px;
+            z-index:1;
+        }
+
+        .content .spirit {
+            width: 134px;
+            height: 148px;
+            right: 100px;
+            bottom: 1px;
+            background-image: url(../pic/interact/assistant/pics-yellowspirits.png);
+            background-position: -510px -215px;
+            position: absolute;
+            filter: drop-shadow(0 4px 16px rgba(195,119,70,0.3));
+        }
+
+
+        .page-box {
+            width: 917px;
+            height: 49px;
+            margin: 0 auto;
+            margin-top: 41px;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            /* 主轴居中 */
+        }
+
+        .page-box button {
+            cursor: pointer;
+        }
+
+        .page-box .generate {
+            width: 380px;
+            height: 49px;
+            background: #8B5634;
+            border-radius: 40px 40px 40px 40px;
+            border: 0px;
+            font-size: 22px;
+            color: #FDF6E6;
+            text-align: center;
+            line-height: 23px;
+            padding: 13px 80px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="img-herb"></div>
+        <div class="back">
+            <a href="../interact.html">
+                <div class="return-button">返回</div>
+            </a>
+            <div class="text-box">
+                <h3>趣味互动</h3>
+                <h2>养生助手</h2>
+            </div>
+        </div>
+        <h1>本助手遵循‘上工治未病’之古训，旨在为您提供养生科普与生活调理建议，助您强健体魄，防病于未然。所有内容均不能替代执业医师的当面诊断与治疗，如有疾恙，请务必及时就医。</h1>
+        <div class="content">
+            <div class="spirit"></div>
+            <div class="flower"></div>
+            <div class="question">
+                <div class="head">
+                    <h2>完成这份小问卷，即可为您量身定制专属的养生锦囊。</h2>
+                </div>
+                <div class="test-box">
+                    <div class="fieldset">
+                        <legend>1.近来，您常感身心如何？</legend>
+                        <div class="option">
+                            <input type="radio" id="energetic" name="q1" value="A">
+                            <label for="energetic">精力充沛</label>
+                            
+                            <input type="radio" id="tired" name="q1" value="B">
+                            <label id="tired">容易疲劳</label>
+                            
+                            <input type="radio" id="middle" name="q1" value="C">
+                            <label for="middle">介于之间</label>
+                        </div>
+                    </div>
+
+                    <div class="fieldset">
+                        <legend>2.您对四季更迭，身体感受明显吗？</legend>
+                        <div class="option">
+                            <input type="radio" id="spring-drowsy" name="q2" value="A">
+                            <label for="spring-drowsy">春日易困</label>
+                    
+                            <input type="radio" id="summer-heat-sweat" name="q2" value="B">
+                            <label for="summer-heat-sweat">夏日怕热多汗</label>
+                    
+                            <input type="radio" id="autumn-dry-skin" name="q2" value="C">
+                            <label for="autumn-dry-skin">秋日皮肤干燥</label>
+                    
+                            <input type="radio" id="winter-cold-limbs" name="q2" value="D">
+                            <label for="winter-cold-limbs">冬日手脚不温</label>
+                        </div>
+                    </div>
+                    
+                    <div class="fieldset">
+                        <legend>3.您偏好的饮食之味是？</legend>
+                        <div class="option">
+                            <input type="radio" id="light-taste" name="q3" value="A">
+                            <label for="light-taste">清淡</label>
+                    
+                            <input type="radio" id="spicy-taste" name="q3" value="B">
+                            <label for="spicy-taste">辛辣</label>
+                    
+                            <input type="radio" id="sweet-taste" name="q3" value="C">
+                            <label for="sweet-taste">甘甜</label>
+                    
+                            <input type="radio" id="bitter-taste" name="q3" value="D">
+                            <label for="bitter-taste">苦涩</label>
+                        </div>
+                    </div>
+                    
+                    <div class="fieldset">
+                        <legend>4.何种情境下您最感惬意？</legend>
+                        <div class="option">
+                            <input type="radio" id="warm-sun" name="q4" value="A">
+                            <label for="warm-sun">暖阳和煦</label>
+                    
+                            <input type="radio" id="gentle-breeze" name="q4" value="B">
+                            <label for="gentle-breeze">清风徐来</label>
+                    
+                            <input type="radio" id="soft-rain" name="q4" value="C">
+                            <label for="soft-rain">温润细雨</label>
+                    
+                            <input type="radio" id="crisp-autumn" name="q4" value="D">
+                            <label for="crisp-autumn">干爽秋日</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="flower"></div>
+        </div>
+        <div class="page-box">
+            <button onclick="window.location.href='./assistant-bag.html'"class="generate">生成我的专属养生锦囊</button>
+        </div>
+    </div>
+</body>
+
+</html>

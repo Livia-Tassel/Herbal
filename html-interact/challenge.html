@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <title>草药仙踪</title>
+    <style>
+        .wrapper {
+            position: relative;
+            flex-direction: column;
+        }
+
+        .wrapper .back {
+            width: 281px;
+            height: 79px;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            left: 40px;
+            top: 27px;
+        }
+
+        .back .return-button {
+            width: 43px;
+            height: 79px;
+            background-image: url(../pic/pic-ink@2x.png);
+            background-size: 43px 79px;
+            background-repeat: no-repeat;
+            text-align: center;
+            font-size: 24px;
+            color: #FFFFFF;
+            line-height: 30px;
+            padding: 10px 9px;
+        }
+
+        .back .text-box {
+            width: 220px;
+            height: 79px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back .text-box h2 {
+            width: 220px;
+            height: 25px;
+            padding-top: 6px;
+            line-height: 19px;
+            font-size: 18px;
+            color: #8B5634;
+            text-align: left;
+        }
+
+        .back .text-box h3 {
+            width: 220px;
+            height: 21px;
+            font-size: 14px;
+            color: rgba(42, 42, 42, 0.4);
+            text-align: left;
+            line-height: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1.5px solid #8B5634;
+            display: inline-block;
+            box-sizing: border-box;
+            margin-top: 16px;
+        }
+
+        .nav {
+            width: 916px;
+            height: 42px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            margin-top: 116px;
+            font-size: 18px;
+            line-height: 42px;
+            color: #8B5634;
+            text-align: center;
+        }
+
+        .nav a {
+            width: 202px;
+            height: 42px;
+            background-image: url(../pic/interact/challenge/pic-navbox.png);
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            opacity: 0.4;
+            transition: 0.1s;
+        }
+
+        .nav .activate {
+            opacity: 1.0;
+        }
+
+        .nav a:hover {
+            opacity: 1.0;
+        }
+
+        .nav a li {
+            font-size: 18px;
+            font-family: serif;
+        }
+
+        .nav a .level1::before {
+            font-size: 18px;
+            content: '基础关';
+            font-family: xiaowei;
+            color: #8B5634;
+        }
+
+        .nav a .level1::after {
+            font-size: 18px;
+            content: '识形辨味';
+            font-family: xiaowei;
+            color: #C39475;
+        }
+
+        .nav a .level2::before {
+            font-size: 18px;
+            content: '进阶关';
+            font-family: xiaowei;
+            color: #8B5634;
+        }
+
+        .nav a .level2::after {
+            font-size: 18px;
+            content: '君臣佐使';
+            font-family: xiaowei;
+            color: #C39475;
+        }
+
+        .nav a .level3::before {
+            font-size: 18px;
+            content: '应用关';
+            font-family: xiaowei;
+            color: #8B5634;
+        }
+
+        .nav a .level3::after {
+            font-size: 18px;
+            content: '对症下药';
+            font-family: xiaowei;
+            color: #C39475;
+        }
+
+        .nav a .level4::before {
+            font-size: 18px;
+            content: '传奇关';
+            font-family: xiaowei;
+            color: #8B5634;
+        }
+
+        .nav a .level4::after {
+            font-size: 18px;
+            content: '神医试炼';
+            font-family: xiaowei;
+            color: #C39475;
+        }
+
+
+
+        .content {
+            width: 917px;
+            height: 399px;
+            background-image: url(../pic/interact/challenge/svg-content.svg);
+            margin: 0 auto;
+            margin-top: 26px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+            position: relative;
+        }
+
+        .content .main {
+            margin-top: 30px;
+            width: 495px;
+            height: 339px;
+            display: flex;
+            flex-direction: column;
+            /* background-color: pink; */
+        }
+
+        .content .main h2 {
+            width: 288px;
+            height: 19px;
+            font-size: 18px;
+            color: #8B5634;
+            text-align: left;
+        }
+
+        .content .main img {
+            margin-top: 18px;
+        }
+
+        /* 整块容器 */
+        .content .option {
+            margin-top: 40px;
+            height: 110px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            color: #746A63;
+            font-size: 16px;
+        }
+
+        /* 隐藏原生圆点 */
+        .content .option input[type="radio"] {
+            position: absolute;
+            color: #746A63;
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        /* 单行区域可点 + 未选中样式 */
+        .content .option label {
+            display: flex;
+            align-items: center;
+            width: 430px;
+            height: 16px;
+            line-height: 16px;
+            font-size: 16px;
+            color: #746A63;
+            cursor: pointer;
+        }
+
+        .content .option label span {
+            font-size: 16px;
+            color: #746A63;
+        }
+
+        /* 选中后文字变黑 */
+        .content .option input:checked+span {
+            color: #AA4200;
+        }
+
+
+        .content .flower {
+            width: 56px;
+            background-image: url(../pic/pic-goldflower.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 36px 36px;
+        }
+
+        .content .flower {
+            width: 56px;
+            background-image: url(../pic/pic-goldflower.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 36px 36px;
+        }
+
+
+        .credit {
+            position: absolute;
+            top: 47px;
+            right: 50px;
+            width: 185px;
+            height: 39px;
+            border-radius: 40px;
+            padding: 10px 20px;
+            background-color: #FDF6E6;
+            z-index: 999;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .credit .flower {
+            background-image: url(../pic/interact/challenge/svg-credit.svg);
+            width: 25px;
+            height: 17px;
+        }
+
+        .credit h2 {
+            width: 113px;
+            height: 19px;
+            font-size: 18px;
+            color: #8B5634;
+            text-align: left;
+            line-height: 19px;
+            display: block;
+        }
+
+        .img-herb {
+            position: absolute;
+            width: 247px;
+            height: 399px;
+            opacity: 0.17;
+            background-image: url(../pic/soul/test/pic-herb.png);
+            top: 0px;
+            right: 0px;
+            z-index: 1;
+        }
+
+        .answer {
+            width: 877px;
+            height: 117px;
+            margin-top: 28px;
+            /* background-color: pink; */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-size: 18px;
+            color: #616161;
+            text-align: left;
+        }
+
+        .answer .submit {
+            margin: auto auto;
+            width: 204px;
+            height: 49px;
+            background: #8B5634;
+            border-radius: 40px 40px 40px 40px;
+            border: 0px;
+            font-size: 22px;
+            color: #FDF6E6;
+            text-align: center;
+            line-height: 49px;
+        }
+
+        .answer p {
+            width: 877px;
+            color: #616161;
+            font-size: 18px;
+        }
+
+        .answer p span {
+            color: #8B5634;
+            font-size: 18px;
+        }
+
+        .loading {
+            width: 625px;
+            height: 26px;
+            margin-top: 46px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .loading .bar {
+            width: 625px;
+            height: 3px;
+            background-color: rgba(139, 86, 52, 0.20);
+        }
+
+        .loading .bar .len {
+            width: 125px;
+            height: 3px;
+            background-color: #8B5634;
+        }
+
+        .loading h2 {
+            width: 192px;
+            height: 15px;
+            font-size: 14px;
+            line-height: 15px;
+            color: rgba(139, 86, 52, 0.8);
+        }
+
+        .wrapper .page-box {
+            display: flex;
+            width: 205px;
+            height: 26px;
+            position: absolute;
+            justify-content: space-between;
+            top: 762px;
+            right: 50.25px;
+        }
+
+        .wrapper .page-box .text {
+            width: 170px;
+            height: 26px;
+            font-size: 24px;
+            color: rgba(139, 86, 52);
+            text-align: center;
+            line-height: 26px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .wrapper .page-box .text .last-page {
+            width: 72px;
+            color: rgba(139, 86, 52, 0.5);
+        }
+
+        .wrapper .page-box .text .divde {
+            color: rgba(139, 86, 52);
+        }
+
+        .wrapper .page-box .text .next-page {
+            width: 72px;
+            color: rgba(139, 86, 52);
+        }
+
+        .wrapper .page-box a {
+            width: 8.73px;
+            height: 16px;
+            margin: 5px 0;
+            background-image: url(../pic/svg-rightarrow.svg);
+            background-size: contain;
+        }
+
+        /* 第一个 a 翻转成左箭头 */
+        .wrapper .page-box a:first-of-type {
+            transform: scaleX(-1);
+        }
+
+        .wrapper .page-box a:last-of-type {
+            transform: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="credit">
+            <div class="flower"></div>
+            <!-- 每题50分 -->
+            <h2>我的积分：688</h2>
+        </div>
+        <div class="img-herb"></div>
+        <ul class="nav">
+            <a href="#" class="activate">
+                <li class="level1"> · </li>
+            </a>
+            <a href="#">
+                <li class="level2"> · </li>
+            </a>
+            <a href="#">
+                <li class="level3"> · </li>
+            </a>
+            <a href="#">
+                <li class="level4"> · </li>
+            </a>
+        </ul>
+
+        <div class="back">
+            <a href="../interact.html">
+                <div class="return-button">返回</div>
+            </a>
+            <div class="text-box">
+                <h3>趣味互动</h3>
+                <h2>草药大闯关</h2>
+            </div>
+        </div>
+        <div class="content">
+            <div class="flower"></div>
+            <div class="main">
+                <!-- 修改题目与图片,只有第二题有图 -->
+                <h2>请问如图所，是以下哪位传奇药材？</h2>
+                <img src="../pic/interact/challenge/pic-medicines.png" alt="">
+                <div class="option">
+                    <label>
+                        <input type="radio" name="q1" value="A">
+                        <span>A. 杜仲 - 折断时有银白色致密胶丝相连</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="q1" value="B">
+                        <span>B. 桂枝 - 为樟科植物的嫩枝，呈长圆柱形</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="q1" value="C">
+                        <span>C. 肉桂 - 为樟科植物的干燥树皮，气香浓烈，味甜而辣</span>
+                    </label>
+
+                    <label>
+                        <input type="radio" name="q1" value="D">
+                        <span>D. 沉香 - 为瑞香科植物含有树脂的木材，质坚沉水</span>
+                    </label>
+                </div>
+            </div>
+            <div class="flower"></div>
+        </div>
+        <div class="answer">
+            <button class="submit">确认</button>
+            <!-- <p><span>破题点睛：</span>此药为肉桂。其关键辨识特征正是图中所示的槽状或卷筒状的干燥树皮，与我们日常烹饪所用的桂皮同源，乃药食同源之佳品。</p>
+            <p><span>知识延展：</span>肉桂性味辛、甘，大热。归肾、脾、心、肝经。补火助阳，引火归元，散寒止痛，温通经脉。它是调理肾阳不足、命门火衰的“要药”，犹如为身体点起一把温暖的命门之火。它被誉为“温阳第一药”，在名方“肾气丸”与“桂附地黄丸”中扮演着不可或缺的“点火”角色。</p> -->
+        </div>
+        <div class="loading">
+            <div class="bar">
+                <div class="len"></div>
+            </div>
+            <h2>再答对9道题，即可获得500积分</h2>
+        </div>
+        <div class="page-box">
+            <a href="#"></a>
+            <div class="text">
+                <div class="last-page">上一题</div>
+                <div class="divde">/</div>
+                <div class="next-page">下一题</div>
+            </div>
+            <a href="#"></a>
+        </div>
+    </div>
+    <script>
+        /* 绿勾、棕叉 SVG 字符串 */
+        const iconCheck = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.592 1C10.728 4.02549 7.2 7.84589 5.608 9.76014L1.72 6.66976L0 8.073L6.712 15C7.864 11.9988 11.528 6.13441 16 1.96524L15.592 1Z" fill="#11AA86"/>
+    </svg>`;
+
+        const iconCross = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M15.6365 1.18108L14.8189 0.363465C14.3343 -0.12116 13.5412 -0.12116 13.0565 0.363497L6.99073 6.42925L2.94342 2.382C2.45875 1.89734 1.66568 1.89734 1.18106 2.382L0.36348 3.19959C-0.12116 3.68425 -0.12116 4.47727 0.36348 4.96199L4.41073 9.00923L0.363512 13.0565C-0.121129 13.5412 -0.121129 14.3343 0.363512 14.8189L1.18112 15.6365C1.66575 16.1212 2.45881 16.1212 2.94348 15.6365L6.99074 11.5893L11.0379 15.6364C11.5227 16.1211 12.3158 16.1211 12.8004 15.6365L13.618 14.8189C14.1026 14.3343 14.1026 13.5412 13.618 13.0565L9.57074 9.00924L15.6366 2.94345C16.1211 2.45875 16.1211 1.66569 15.6365 1.18108Z" fill="#AA4200"/>
+    </svg>`;
+
+        /* 绑定确认按钮 */
+        document.querySelector('.submit').addEventListener('click', function () {
+            const radios = document.querySelectorAll('.option input[name="q1"]');
+            const selected = [...radios].find(r => r.checked);
+            if (!selected) { alert('请先选择一个答案！'); return; }
+
+            const userVal = selected.value;          // A/B/C/D
+            const correctVal = 'C';                  // 正确答案
+
+            radios.forEach(radio => {
+                const label = radio.closest('label');
+                const span = label.querySelector('span');
+                /* 清空上一次图标 */
+                label.querySelectorAll('.icon').forEach(i => i.remove());
+
+                /* 创建图标容器（绝对定位） */
+                const iconBox = document.createElement('i');
+                iconBox.className = 'icon';
+                iconBox.style.cssText = 'position:absolute;left:-24px;top:50%;transform:translateY(-50%);width:16px;height:16px;';
+
+                if (radio.value === correctVal) {
+                    /* 正确项：文字变绿 + 绿勾 */
+                    span.style.color = '#11AA86';
+                    iconBox.innerHTML = iconCheck;
+                    label.style.position = 'relative';
+                    label.appendChild(iconBox);
+                } else if (radio === selected) {
+                    /* 用户选错的项：棕叉 */
+                    iconBox.innerHTML = iconCross;
+                    label.style.position = 'relative';
+                    label.appendChild(iconBox);
+                }
+            });
+
+            /* 按钮消失 + 解析出现 */
+            document.querySelector('.submit').style.display = 'none';
+            document.querySelector('.answer').insertAdjacentHTML(
+                'beforeend',
+                `<p><span>破题点睛：</span>此药为肉桂。其关键辨识特征正是图中所示的槽状或卷筒状的干燥树皮，与我们日常烹饪所用的桂皮同源，乃药食同源之佳品。</p>
+         <p><span>知识延展：</span>肉桂性味辛、甘，大热。归肾、脾、心、肝经。补火助阳，引火归元，散寒止痛，温通经脉。它是调理肾阳不足、命门火衰的“要药”，犹如为身体点起一把温暖的命门之火。它被誉为“温阳第一药”，在名方“肾气丸”与“桂附地黄丸”中扮演着不可或缺的“点火”角色。</p>`
+            );
+        });
+    </script>
+</body>
+
+</html>

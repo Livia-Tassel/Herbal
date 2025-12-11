@@ -1,0 +1,246 @@
+body {
+    background-color: #E8DBBD;
+    background-image: url(../pic/pic-background.png);
+    background-repeat: repeat;
+    background-position: center top;
+}
+
+.content .wrapper {
+    display: block;
+}
+
+.content .wrapper .upbox {
+    width: 1280px;
+    height: 953px;
+    background-image: url(../pic/search/pic-bg-hill.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 0 128px;
+    padding: 94px 181px 0px 84px;
+}
+
+.content .wrapper .upbox .cnmap {
+    width: 1015px;
+    height: 620px;
+    background-image: url(../pic/search/pic-cnmap.png);
+    filter: drop-shadow(0px 14px 54px #CDA67D);
+}
+
+.content .wrapper .upbox .cnmap ul {
+    width: 1015px;
+    height: 620px;
+    position: relative;
+    display: flex;
+    font-size: 18px;
+}
+
+.content .wrapper .upbox .cnmap ul li {
+    width: 36px;
+    height: 107px;
+    background-repeat: no-repeat;
+    text-align: left;
+    background-image: url(../pic/search/pic-vertbox.png);
+    filter: drop-shadow(0px 4px 12px rgb(187, 116, 76, 0.8));
+    position: absolute;
+    transition: transform 0.3s ease;
+}
+
+.content .wrapper .upbox .cnmap ul li a {
+    width: 36px;
+    height: 107px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+    background: linear-gradient(to bottom, #652605 0%, #B15F34 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+}
+
+.content .wrapper .upbox .cnmap ul li a:hover {
+    background: #FFF6E6;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.content .wrapper .upbox .cnmap ul li:hover {
+    transform: translateY(-10px);
+}
+
+li:nth-child(1) {
+    left: 408px;
+    top: 155px;
+}
+
+li:nth-child(2) {
+    left: 337px;
+    top: 275px;
+}
+
+li:nth-child(3) {
+    left: 473px;
+    top: 335px;
+    font-size: 16px;
+}
+
+li:nth-child(4) {
+    left: 597px;
+    top: 364px;
+}
+
+li:nth-child(5) {
+    left: 687px;
+    top: 270px;
+    font-size: 16px;
+}
+
+li:nth-child(6) {
+    left: 770px;
+    top: 110px;
+}
+
+.downbox {
+    width: 1280px;
+    padding: 0px 181px;
+}
+
+.downbox ul {
+    width: 918px;
+    height: 2558px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.downbox ul li {
+    width: 918px;
+    height: 343px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.downbox ul li h3 {
+    width: 307px;
+    height: 57px;
+    background-image: url(../pic/search/pic-textbox.png);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-repeat: no-repeat;
+}
+
+.downbox ul li h3 span {
+    background: linear-gradient(to bottom, #652605 0%, #B15F34 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    font-size: 26px;
+}
+
+.downbox ul li .rectbox {
+    width: 918px;
+    height: 260px;
+    background-image: url(../pic/search/svg-box.svg);
+    background-size: contain;
+    position: relative;
+    display: flex;
+    flex-direction:row;
+    justify-content: space-between;
+}
+
+.downbox ul li .rectbox .limg {
+    left: 12px;
+    top: 118px;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background-image: url(../pic/pic-goldflower.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 999;
+}
+
+.downbox ul li .rectbox .rimg {
+    right: 12px;
+    top: 118px;
+    width: 32px;
+    height: 32px;
+    position: absolute;
+    background-image: url(../pic/pic-goldflower.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    z-index: 999;
+}
+
+.downbox ul li .rectbox .maptext {
+    width: 250px;
+    height: 208px;
+    margin-left: 74px;
+    margin-top: 22px;
+}
+
+.downbox ul li .rectbox .maptext .map {
+    width: 250px;
+    height: 140px;
+    display: block;
+}
+
+.downbox ul li .rectbox .maptext .text {
+    width: 250px;
+    height: 68px;
+    font-size: 16px;
+    padding-left: 6px;
+    color: #7E5844;
+}
+
+.downbox ul li .divline {
+    width: 1px;
+    height: 200px;
+    background: rgba(163, 127, 69, 0.5);
+    position: absolute;
+    left: 351px;
+    top: 34px;
+}
+
+.downbox ul li .herbtext {
+    width: 474px;
+    height: 204px;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+    margin-right: 69px;
+
+}
+
+.downbox ul li .herbtext .plant{
+    width: 150px;
+    height: 204px;
+}
+
+.downbox ul li .herbtext .plant img{
+    width: 150px; 
+    height: 180px;
+    display: block;
+}
+
+.downbox ul li .herbtext .plant figcaption {
+    line-height: 24px;
+    width: 150px;
+    height: 24px;
+    text-align: center;
+    font-size: 22px;
+    color: #7E5844;
+    /* display: block; */
+}
+
+.downspace{
+    display: block;
+    height: 100px;
+}

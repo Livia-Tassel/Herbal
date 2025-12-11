@@ -1,0 +1,41 @@
+body {
+    background-color: #E8DBBD;
+    background-image: url(../pic/home/pic-bg-start.png), url(../pic/pic-background.png);
+    background-repeat: no-repeat, repeat;
+    background-position: center top, center top;
+}
+
+.content{
+    height:679px;
+    margin: 0px auto;
+    display: flex;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 1280px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.content .wrapper .scroll{
+    width: 1172px;
+    height: 539px;
+    margin: 140px 54px 0px 54px;
+    background-image: url(../pic/home/pic-scroll.png);
+    background-size:cover;
+    /* background-color: pink; */
+}
+
+.content .wrapper .scroll .button{
+    margin:179px 492px 0px 494px;
+    width: 187px;
+    height: 181px;
+    line-height: 187px;
+    font-size: 38px;
+    color: white;
+    text-align: center;
+    background-image: url(../pic/home/pic-button.png);
+    display: block;
+}

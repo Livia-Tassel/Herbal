@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/base.css">
+    <link rel="stylesheet" href="../css/common.css">
+    <title>草药仙踪</title>
+    <style>
+        .wrapper {
+            position: relative;
+            flex-direction: column;
+        }
+
+        .wrapper .back {
+            width: 281px;
+            height: 79px;
+            display: flex;
+            justify-content: space-between;
+            position: absolute;
+            left: 40px;
+            top: 27px;
+        }
+
+        .back .return-button {
+            width: 43px;
+            height: 79px;
+            background-image: url(../pic/pic-ink@2x.png);
+            background-size: 43px 79px;
+            background-repeat: no-repeat;
+            text-align: center;
+            font-size: 24px;
+            color: #FFFFFF;
+            line-height: 30px;
+            padding: 10px 9px;
+        }
+
+        .back .text-box {
+            width: 220px;
+            height: 79px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .back .text-box h2 {
+            width: 220px;
+            height: 25px;
+            padding-top: 6px;
+            line-height: 19px;
+            font-size: 18px;
+            color: #8B5634;
+            text-align: left;
+        }
+
+        .back .text-box h3 {
+            width: 220px;
+            height: 21px;
+            font-size: 14px;
+            color: rgba(42, 42, 42, 0.4);
+            text-align: left;
+            line-height: 15px;
+            padding-bottom: 5px;
+            border-bottom: 1.5px solid #8B5634;
+            display: inline-block;
+            box-sizing: border-box;
+            margin-top: 16px;
+        }
+
+        .nav {
+            width: 858px;
+            height: 40px;
+            display: flex;
+            justify-content: space-between;
+            margin: 0 auto;
+            margin-top: 116px;
+            font-size: 18px;
+            color: #8B5634;
+            text-align: center;
+            line-height: 40px;
+        }
+
+        .nav .box4 {
+            width: 132px;
+            height: 40px;
+            background-image: url(../pic/interact/video/pic-box4.png);
+        }
+
+        .nav .box7 {
+            width: 186px;
+            height: 40px;
+            background-image: url(../pic/interact/video/pic-box7.png);
+        }
+
+        .nav .box5 {
+            width: 150px;
+            height: 40px;
+            background-image: url(../pic/interact/video/pic-box5.png);
+        }
+
+        .content {
+            width: 917px;
+            height: 586px;
+            background-image: url(../pic/interact/video/svg-content.svg);
+            margin: 0 auto;
+            margin-top: 32px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 2;
+            position: relative;
+        }
+
+        .content .flower {
+            height: 586px;
+            width: 56px;
+            background-image: url(../pic/pic-goldflower.png);
+            background-repeat: no-repeat;
+            background-position: center center;
+            background-size: 36px 36px;
+        }
+
+        .content .list {
+            width: 805px;
+            height: 490px;
+            /* background-color: pink; */
+            margin: auto 0;
+            display: flex;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-content: space-between;
+        }
+
+        .content .list .box {
+            width: 371px;
+            height: 232px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-content: center;
+        }
+
+        .content .list .box img {
+            width: 371px;
+        }
+
+        .content .list .box h2 {
+            height: 24px;
+            line-height: 24px;
+            font-size: 24px;
+            color: #8B5634;
+            text-align: center;
+        }
+
+        .img-herb {
+            position: absolute;
+            width: 247px;
+            height: 399px;
+            opacity: 0.17;
+            background-image: url(../pic/soul/test/pic-herb.png);
+            top: 0px;
+            right: 0px;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="img-herb"></div>
+        <div class="back">
+            <a href="../interact.html">
+                <div class="return-button">返回</div>
+            </a>
+            <div class="text-box">
+                <h3>趣味互动</h3>
+                <h2>视频咨讯</h2>
+            </div>
+        </div>
+        <div class="nav">
+            <a href="#">
+                <div class="box5">本草动画志</div>
+            </a>
+            <a href="#">
+                <div class="box4">药典新说</div>
+            </a>
+            <a href="#">
+                <div class="box5">养生小锦囊</div>
+            </a>
+            <a href="#">
+                <div class="box7">药材的前世今生</div>
+            </a>
+            <a href="#">
+                <div class="box5">古法生活志</div>
+            </a>
+        </div>
+        <div class="content">
+            <div class="flower"></div>
+            <div class="list">
+                <div class="box">
+                    <a href="./video.html"><img src="../pic/interact/video/1-连翘.png" alt=""></a>
+                    <a href=""><h2>连翘</h2></a> <!-- 添加弹窗 -->
+                </div>
+                <div class="box">
+                    <a href="#"><img src="../pic/interact/video/2-金银花.png" alt=""></a>
+                    <a href="">
+                        <h2>金银花</h2>
+                    </a> <!-- 添加弹窗 -->
+                </div>
+                <div class="box">
+                    <a href="#"><img src="../pic/interact/video/3-苦杏仁.png" alt=""></a>
+                    <a href="">
+                        <h2>苦杏仁</h2>
+                    </a> <!-- 添加弹窗 -->
+                </div>
+                <div class="box">
+                    <a href="#"><img src="../pic/interact/video/4-黄岑.png" alt=""></a>
+                    <a href="">
+                        <h2>人参</h2>
+                    </a> <!-- 添加弹窗 -->
+                </div>
+            </div>
+            <div class="flower"></div>
+        </div>
+    </div>
+</body>
+
+</html>

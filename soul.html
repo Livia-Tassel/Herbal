@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/base.css">
+    <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./css/soul.css">
+    <style>
+        /* ===== 弹窗遮罩与窗口样式（来自第二个文件） ===== */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            z-index: 99;
+            display: none; /* 初始隐藏 */
+        }
+
+        .window {
+            width: 785px;
+            height: 661px;
+            background-image: url(./pic/soul/pic-soul-window.png);
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+            
+        .window .close-btn {
+            width: 30px;
+            height: 30px;
+            padding: 0;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            line-height: 0;
+            position: absolute;
+            top: 94px;
+            right: 108px;
+        }
+
+        .window .close-btn svg {
+            display: block;
+        }
+
+        .window h1{
+            margin-top: 95px;
+            height: 28px;
+            line-height: 28px;
+            font-size: 26px;
+            color: #845241;
+        }
+
+        .window .img{
+            width: 539px;
+            height: 170px;
+            margin-top: 23px;
+            background-image: url(./pic/soul/pics-herb.png);
+            background-repeat: no-repeat;
+            /* 精灵图 190px*n */
+            background-position: 0px 0px;
+            /* background-position: 0px -190px;  */
+            /* background-position: 0px -380px;  */
+        }
+
+        .window .list {
+            width: 557px;
+            height: 231px;
+            margin-top: 28px;
+        }
+
+        .window .list dl dt {
+            width: 364px;
+            height: 23px;
+            font-weight: normal;
+            font-size: 18px;
+            color: #9D6345;
+            line-height: 23px;
+        }
+
+        .window .list dl dt span{
+            font-family: sans-serif;
+            font-size: 18px;
+            color: #9D6345;
+        }
+
+        .window .list dl dd {
+            margin-top: 8px;
+            margin-left: 0;
+            position: relative;
+            padding-left: 1.4em;
+        }
+
+        .window .list dl dd li {
+            list-style: disc;
+            font-size: 16px;
+            color: #535353;
+            line-height: 25px;
+        }
+
+    </style>
+    <title>草药仙踪</title>
+</head>
+<body>
+    <div class="header">
+        <div class="wrapper">
+            <div class="logo">
+                <a href="index.html">
+                    <h1>草药仙踪</h1>
+                </a>
+            </div>
+            <div class="nav">
+                <ul>
+                    <li><a href="home.html">首页</a></li>
+                    <li><a href="mys.html">神秘故事</a></li>
+                    <li><a href="search.html">草药探寻</a></li>
+                    <li><a href="interact.html">趣味互动</a></li>
+                    <li><a href="soul.html" class="activate">草药仙灵</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="content">
+        <div class="wrapper">
+            <button class="test" onclick="window.location.href='./html-soul/test-window.html'">草药人格<br>测试</button>
+            <div class="assist">
+                <h2>草药小助手</h2>
+            </div>
+            <div class="ask">
+                <form onsubmit="handleSubmit(event)">
+                    <div class="search-wrapper">
+                        <div class="radio-group">
+                            <div class="flower"></div>
+                            <span data-mode="mode1" class="active">问道模式</span>
+                            <span data-mode="mode2">闲聊模式</span>
+                            <span data-mode="mode3">求方模式</span>
+                        </div>
+                        <textarea class="search-input" placeholder="在此执笔，与仙灵问道……" required></textarea>
+                        <button type="submit" class="submit-btn">
+                            <svg class="btn__icon" aria-hidden="true" width="17" height="16" viewBox="0 0 17 16" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path
+                                    d="M5.04192 9.73487L5.01026 9.70617L10.5419 5.05155L3.1803 8.04217L0.208683 5.3392C0.12418 5.26229 0.0618355 5.16385 0.0282164 5.05424C-0.00540262 4.94464 -0.00905124 4.82793 0.017655 4.71641C0.0443612 4.6049 0.100433 4.5027 0.179965 4.42059C0.259496 4.33848 0.359542 4.27949 0.469563 4.24984L16.2046 0.0212676C16.3127 -0.00757215 16.4265 -0.00707264 16.5343 0.0227153C16.6421 0.0525033 16.7402 0.110517 16.8185 0.19086C16.8969 0.271203 16.9527 0.371009 16.9803 0.480132C17.008 0.589255 17.0064 0.703803 16.9759 0.812132L12.7841 15.5375C12.7545 15.6417 12.6991 15.7365 12.6231 15.8131C12.547 15.8897 12.4529 15.9456 12.3495 15.9754C12.2461 16.0052 12.1368 16.008 12.0321 15.9835C11.9273 15.959 11.8305 15.908 11.7507 15.8354L7.68047 12.1336L5.04192 14.7907V9.73487Z"
+                                    fill="#FDF6E6" />
+                            </svg>
+                            <span class="btn__text">发送</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="content-down wrapper">
+        <div class="hbox">仙草图鉴</div>
+        <div class="cards">
+            <div class="card">
+                <div class="up-icon"></div>
+                <h3>黄精</h3>
+                <img src="./pic/soul/spirits/黄精.png" alt="黄精">
+                <p><span>【</span>仙灵名<span>】</span>黄精<br><span>【</span>尊号<span>】</span>补益仙子<br><span>【</span>属性<span>】</span>土行-平甘<br>
+                <span>【</span>性格寄语<span>】</span>安静沉稳，温润善补，不争不抢，默默守护同伴元气。</p>
+                <a href="#"><h2>查看仙灵本体与药效</h2></a>
+                <div class="down-icon"></div>
+            </div>
+            <div class="card">
+                <div class="up-icon"></div>
+                <h3>金银花</h3>
+                <img src="./pic/soul/spirits/金银花.png" alt="金银花">
+                <p><span>【</span>仙灵名<span>】</span>金银花<br><span>【</span>尊号<span>】</span>清甜守护者<br><span>【</span>属性<span>】</span>清甜<br><span>【</span>性格寄语<span>】</span>明亮活泼，性情纯净，温柔外向，是团队中的治愈核心。</p>
+                <a href="#"><h2>查看仙灵本体与药效</h2></a>
+                <div class="down-icon"></div>
+            </div>
+            <div class="card">
+                <div class="up-icon"></div>
+                <h3>蒲公英</h3>
+                <img src="./pic/soul/spirits/蒲公英.png" alt="蒲公英">
+                <p><span>【</span>仙灵名<span>】</span>蒲公英<br><span>【</span>尊号<span>】</span>风野旅者<br><span>【</span>属性<span>】</span>风野<br><span>【</span>性格寄语<span>】</span>阳光自由，乐天烂漫，随风洒脱，善于安抚情绪。
+                </p>
+                <a href="#">
+                    <h2>查看仙灵本体与药效</h2>
+                </a>
+                <div class="down-icon"></div>
+            </div>
+            <div class="card">
+                <div class="up-icon"></div>
+                <h3>鱼腥草</h3>
+                <img src="./pic/soul/spirits/鱼腥草.png" alt="鱼腥草">
+                <p><span>【</span>仙灵名<span>】</span>鱼腥草<br><span>【</span>尊号<span>】</span>寒露之芽<br><span>【</span>属性<span>】</span>寒露<br><span>【</span>性格寄语<span>】</span>气质清冷，体质清利，沉静寡言，低调而可靠的守护者。
+                </p>
+                <a href="#">
+                    <h2>查看仙灵本体与药效</h2>
+                </a>
+                <div class="down-icon"></div>
+            </div>
+            <div class="card">
+                <div class="up-icon"></div>
+                <h3>花椒</h3>
+                <img src="./pic/soul/spirits/花椒.png" alt="花椒">
+                <p><span>【</span>仙灵名<span>】</span>花椒<br><span>【</span>尊号<span>】</span>火红山童<br><span>【</span>属性<span>】</span>火红<br><span>【</span>性格寄语<span>】</span>精力旺盛，爽朗热情，天生不怕冷，是热闹活泼的存在。
+                </p>
+                <a href="#">
+                    <h2>查看仙灵本体与药效</h2>
+                </a>
+                <div class="down-icon"></div>
+            </div>
+            <div class="card">
+                <div class="up-icon"></div>
+                <h3>酸枣</h3>
+                <img src="./pic/soul/spirits/酸枣.png" alt="酸枣">
+                <p><span>【</span>仙灵名<span>】</span>酸枣<br><span>【</span>尊号<span>】</span>宁心果实<br><span>【</span>属性<span>】</span>宁心<br><span>【</span>性格寄语<span>】</span>慵懒恬静，醇厚温和，心绪沉静，带来一夜好眠。
+                </p>
+                <a href="#">
+                    <h2>查看仙灵本体与药效</h2>
+                </a>
+                <div class="down-icon"></div>
+            </div>
+            <div class="card">
+                <div class="up-icon"></div>
+                <h3>艾叶</h3>
+                <img src="./pic/soul/spirits/艾叶.png" alt="艾叶">
+                <p><span>【</span>仙灵名<span>】</span>艾叶<br><span>【</span>尊号<span>】</span>温阳使者<br><span>【</span>属性<span>】</span>温阳<br>
+                    <span>【</span>性格寄语<span>】</span>清丽柔和，心性善良，纯阳温暖，带来踏实的安全感。
+                </p>
+                <a href="#">
+                    <h2>查看仙灵本体与药效</h2>
+                </a>
+                <div class="down-icon"></div>
+            </div>
+            <div class="card">
+                <div class="up-icon"></div>
+                <h3>黄岑</h3>
+                <img src="./pic/soul/spirits/黄岑.png" alt="黄岑">
+                <p><span>【</span>仙灵名<span>】</span>黄岑<br><span>【</span>尊号<span>】</span>清热柔光<br><span>【</span>属性<span>】</span>清热<br><span>【</span>性格寄语<span>】</span>沉静内敛，外表清冷，内心坚韧，以冷静智慧解毒。
+                </p>
+                <a href="#">
+                    <h2>查看仙灵本体与药效</h2>
+                </a>
+                <div class="down-icon"></div>
+            </div>
+        </div>
+    </div>
+    <div class="space">
+    </div>
+    <!-- ===== 弹窗结构 ===== -->
+    <div class="overlay">
+        <div class="window">
+            <button class="close-btn">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15 30C6.72 30 0 23.28 0 15C0 6.72 6.72 0 15 0C23.28 0 30 6.72 30 15C30 23.28 23.28 30 15 30ZM15 1.425C7.53 1.425 1.425 7.53 1.425 15C1.425 22.47 7.515 28.575 15 28.575C22.485 28.575 28.575 22.485 28.575 15C28.575 7.515 22.47 1.425 15 1.425Z"
+                        fill="#845241" />
+                    <path
+                        d="M16.0809 15L21.7959 9.28504C22.0809 9.00004 22.0809 8.53504 21.7959 8.20504L21.7509 8.16004C21.4659 7.87504 21.0009 7.87504 20.7159 8.16004L15.0009 13.92L9.28594 8.20504C9.00094 7.92004 8.53594 7.92004 8.25094 8.20504L8.20594 8.25004C7.92094 8.53504 7.92094 9.00004 8.20594 9.33004L13.9209 15L8.20594 20.715C7.92094 21 7.92094 21.465 8.20594 21.795L8.25094 21.84C8.53594 22.125 9.00094 22.125 9.28594 21.84L15.0009 16.08L20.7159 21.795C21.0009 22.08 21.4659 22.08 21.7509 21.795L21.7959 21.75C22.0809 21.465 22.0809 21 21.7959 20.67L16.0809 15Z"
+                        fill="#845241" />
+                </svg>
+            </button>
+            <h1>仙灵本体与药效</h1>
+            <div class="img"></div>
+            <div class="list">
+                <dl>
+                    <dt><span>【</span>核心药效<span>】</span></dt>
+                    <dd>
+                        <li>脾胃虚弱：用于身体倦怠乏力、食少口干、舌红少苔。应用黄精甘平滋润，能补气养阴，为脾胃提供持续的生机和营养，使其功能逐渐恢复。</li>
+                        <li>肺燥咳嗽：用于干咳少痰、口燥咽干。她能润肺，滋养肺阴，缓解肺燥热。</li>
+                        <li>肾虚精亏：用于腰膝酸软、头晕耳鸣。黄精入肾经，能益肾精，缓慢而持久地增强体质，强筋健骨。 </li>
+                    </dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+    <script>
+        let currentMode = "mode1";
+
+        document.querySelectorAll('.radio-group span').forEach(span => {
+            span.addEventListener('click', () => {
+                document.querySelectorAll('.radio-group span').forEach(s => s.classList.remove('active'));
+                span.classList.add('active');
+                currentMode = span.dataset.mode;
+            });
+        });
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            const query = document.querySelector('.search-input').value;
+            alert(`当前模式：${currentMode}\n搜索内容：${query}`);
+        }
+
+        // 获取第一个“查看仙灵本体与药效”按钮（即第一个 <a>）
+        const firstLink = document.querySelector('.cards .card:first-of-type a');
+        const overlay = document.querySelector('.overlay');
+        const closeBtn = document.querySelector('.close-btn');
+
+        // 点击该链接显示弹窗
+        firstLink.addEventListener('click', function (event) {
+            event.preventDefault(); // 阻止跳转 #
+            overlay.style.display = 'block';
+        });
+
+        // 点击关闭按钮隐藏弹窗
+        closeBtn.addEventListener('click', function () {
+            overlay.style.display = 'none';
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,40 @@
+/* 基础公共样式：清除默认样式 + 设置通用样式 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'xiaowei';
+  color: #66401C;
+  font-weight: 400;
+}
+
+li {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+@font-face {
+  font-family: 'xiaowei';
+  src: url(./站酷小薇logo体.OTF);
+}
+
+/* body {
+  font: 14px/1.5 "Microsoft Yahei", "Hiragino Sans GB", "Heiti SC", "WenQuanYi Micro Hei", sans-serif;
+  color: #333;
+} */
+
+body {
+  background-color: #E8DBBD;
+  background-image: url(../pic/pic-background.png);
+  background-repeat: repeat;
+  background-position: center top;
+}
+
+
+html {
+  overflow-y: scroll;
+  /* 永远保留滚动条占位 */
+}

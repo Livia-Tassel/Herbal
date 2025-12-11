@@ -1,0 +1,98 @@
+body {
+    background-color: #E8DBBD;
+    background-image: url(../pic/interact/pic-bg-interact.png), url(../pic/pic-background.png);
+    background-repeat: no-repeat, repeat;
+    background-position: center top, center top;
+}
+
+.content {
+    margin-top: 32px;
+    /* background-color: grey; */
+}
+
+.wrapper .scroll {
+    margin: 0 auto;
+    width: 1104px;
+    height: 601px;
+    background-image: url(../pic/interact/pic-ancientscroll.png);
+    background-size: contain;
+    display: flex;
+}
+
+.wrapper .scroll .threebox{
+    margin-top: 90px;
+    margin-bottom: 76px;
+    height: 435px;
+    display: flex;
+    flex-direction: column;
+}
+
+.wrapper .scroll .break {
+    width: 210px;
+    margin-left: 144px;
+}
+
+.wrapper .scroll .health {
+    width: 252px;
+    margin-left: 93px;
+}
+
+.wrapper .scroll .video {
+    width: 216px;
+    margin-left: 60px;
+}
+
+.wrapper .scroll .threebox h2{
+    height: 25px;
+    font-size: 34px;
+    color: #845241;
+    line-height: 25px;
+    text-align: left;
+}
+
+.wrapper .scroll .threebox h3 {
+    margin-top: 16px;
+    height: 15px;
+    font-size: 16px;
+    color: rgba(132, 82, 65, 0.7);
+    line-height: 15px;
+    text-align: left;
+}
+
+.wrapper .scroll .threebox img {
+    margin-top: 25px;
+    height: 204px;
+    object-fit: contain;
+    margin-left: 0px;
+    padding-left: 0px;
+    display: block;
+}
+
+.wrapper .scroll .threebox h4 {
+    height: 54px;
+    width: 210px;
+    margin-top: 25px;
+    color: rgba(61, 61, 61, 0.5);
+    font-size: 14px;
+    line-height: 18px;
+}
+
+.wrapper .scroll .threebox .img-btn {
+    width: 194px;
+    height: 42px;
+    margin-top: 28px;
+    margin-left: 8px;
+    border: none;
+    padding: 0;
+    background: url('../pic/interact/pic-orangebox.png') no-repeat center/cover ;
+    cursor: pointer;
+    outline: none;
+    font-size: 20px;
+    line-height: 42px;
+    text-align: center;
+    color: #FFFFFF;
+}
+
+.wrapper .scroll .threebox .img-btn:hover {
+    opacity: 0.8;
+}
