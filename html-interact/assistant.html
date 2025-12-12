@@ -340,8 +340,26 @@
             <div class="flower"></div>
         </div>
         <div class="page-box">
-            <button onclick="window.location.href='./assistant-bag.html'"class="generate">生成我的专属养生锦囊</button>
+            <button onclick="generateBag()" class="generate">生成我的专属养生锦囊</button>
         </div>
+    </div>
+    <script>
+        function generateBag() {
+            const q1 = document.querySelector('input[name="q1"]:checked');
+            const q2 = document.querySelector('input[name="q2"]:checked');
+            const q3 = document.querySelector('input[name="q3"]:checked');
+            const q4 = document.querySelector('input[name="q4"]:checked');
+            
+            if (!q1 || !q2 || !q3 || !q4) {
+                alert('请完成所有问题后再生成锦囊');
+                return;
+            }
+            // Map Q2 value to season
+            const seasonMap = { 'A': 'spring', 'B': 'summer', 'C': 'autumn', 'D': 'winter' };
+            const season = seasonMap[q2.value] || 'spring';
+            window.location.href = `./assistant-bag.html?season=${season}`;
+        }
+    </script>
     </div>
 </body>
 

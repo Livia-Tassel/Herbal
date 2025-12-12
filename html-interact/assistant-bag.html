@@ -148,35 +148,166 @@
             </div>
         </div>
         <div class="content">
-            <div class="box">
-                <h2>茶饮方草木菁华</h2>
-                <h3>为您特调解郁安神茶</h3>
-                <ul>
-                    <li>配伍： 玫瑰花3朵、枸杞子5粒、红枣1颗</li>
-                    <li>制法： 沸水冲泡，静待5分钟，花香溢出即可饮用。 </li>
-                    <li>古法新说： 此方源于疏肝解郁之理，玫瑰馥郁，能舒达肝气；枸杞红枣，甘润养血。适于日常压力较大、情绪紧绷时饮用。</li>
-                </ul>
+            <div class="box" id="box1">
+                <h2 id="box1-title">茶饮方草木菁华</h2>
+                <h3 id="box1-subtitle">加载中...</h3>
+                <ul id="box1-list"></ul>
             </div>
-            <div class="box">
-                <h2>膳方食养同源</h2>
-                <h3>山药薏米养生粥</h3>
-                <ul>
-                    <li>食材： 山药半根、薏米30克、大米50克。</li>
-                    <li>制法： 薏米提前浸泡，与大米同煮，山药去皮切块，粥成前10分钟放入。</li>
-                    <li>古法新说： 此粥平和，山药健脾固肾，薏米利湿。如同为脾胃撑起一把伞，尤其适合脾虚湿重之人。</li>
-                </ul>
+            <div class="box" id="box2">
+                <h2 id="box2-title">膳方食养同源</h2>
+                <h3 id="box2-subtitle">加载中...</h3>
+                <ul id="box2-list"></ul>
             </div>
-            <div class="box">
-                <h2>节气方天人相应</h2>
-                <h3>祛湿健脾正当时</h3>
-                <ul>
-                    <li>节气特点： 雨水增多，湿气加重，易困脾胃。</li>
-                    <li>核心建议： 饮食可适量加入白扁豆、陈皮等食材；晴天多散步，微微出汗，以排湿气。</li>
-                    <li>禁忌提示： 此时节忌食过多生冷油腻，以免加重体内湿气。</li>
-                </ul>
+            <div class="box" id="box3">
+                <h2 id="box3-title">节气方天人相应</h2>
+                <h3 id="box3-subtitle">加载中...</h3>
+                <ul id="box3-list"></ul>
             </div>
         </div>
     </div>
+    <script>
+        // Season Data Configuration
+        const bagData = {
+            spring: {
+                tea: {
+                    title: "茶饮方草木菁华",
+                    subtitle: "茉莉玫瑰疏肝茶",
+                    items: [
+                        "配伍：茉莉花3g、玫瑰花3g、薄荷叶2g。三味相合，芳香馥郁",
+                        "制法：沸水冲泡5分钟，待花香溢出即可品饮，日饮两杯为宜",
+                        "古法新说：疏肝理气、提神醒脑，尤适春日情绪不畅、胸闷头昏者"
+                    ]
+                },
+                soup: {
+                    title: "膳方食养同源",
+                    subtitle: "黄芪茯苓健脾汤",
+                    items: [
+                        "食材：黄芪15g、茯苓10g、党参10g、山药20g、大枣5枚、生姜2片",
+                        "制法：与瘦肉或鸡肉同炖1.5小时，加盐调味，温热饮用",
+                        "古法新说：健脾益气、祛湿解困，适合春困乏力、肢体沉重之人"
+                    ]
+                },
+                seasonal: {
+                    title: "节气方天人相应",
+                    subtitle: "春困调理正当时",
+                    items: [
+                        "节气特点：春季阳气升发，湿气渐重，易生困倦乏力之感",
+                        "核心建议：早睡早起、适当户外活动，舒展筋骨以助阳气升发",
+                        "禁忌提示：忌过食酸涩收敛之品，以免肝气郁结、加重困倦"
+                    ]
+                }
+            },
+            summer: {
+                tea: {
+                    title: "茶饮方草木菁华",
+                    subtitle: "竹叶茅根清心茶",
+                    items: [
+                        "配伍：淡竹叶6g、白茅根10g、西洋参3g。清凉甘润，消暑佳品",
+                        "制法：沸水冲泡10分钟，可反复冲泡2-3次，日饮不限",
+                        "古法新说：清热生津、消暑解渴，尤适夏日心烦口渴、多汗者"
+                    ]
+                },
+                soup: {
+                    title: "膳方食养同源",
+                    subtitle: "荷叶冬瓜消暑汤",
+                    items: [
+                        "食材：鲜荷叶1角、冬瓜200g、薏苡仁15g、扁豆10g、瘦肉适量",
+                        "制法：瘦肉焯水，加入荷叶冬瓜等同炖1小时，清淡调味即可",
+                        "古法新说：清热解暑、利水祛湿，适合夏日身热多汗、食欲不振"
+                    ]
+                },
+                seasonal: {
+                    title: "节气方天人相应",
+                    subtitle: "暑热调护要诀",
+                    items: [
+                        "节气特点：暑热当令，汗出伤津，心火易旺，易生烦躁",
+                        "核心建议：午间小憩养心神，饮食清淡、多补水分，避免暴晒",
+                        "禁忌提示：忌过食冰冷寒凉，以防伤及脾胃阳气、引发腹泻"
+                    ]
+                }
+            },
+            autumn: {
+                tea: {
+                    title: "茶饮方草木菁华",
+                    subtitle: "罗汉果菊花润燥饮",
+                    items: [
+                        "配伍：罗汉果1/4个、胎菊3g、枸杞5g。甘润清香，润燥养目",
+                        "制法：沸水冲泡8分钟，可加蜂蜜调味，温热或放凉饮用皆可",
+                        "古法新说：清热润燥、利咽止咳，尤适秋季咽干口燥、眼涩者"
+                    ]
+                },
+                soup: {
+                    title: "膳方食养同源",
+                    subtitle: "沙参玉竹润肺汤",
+                    items: [
+                        "食材：北沙参10g、玉竹10g、麦冬6g、百合6g、银耳5g、甘草2g",
+                        "制法：银耳泡发，与诸药同煮40分钟，可加冰糖作润肺甜汤",
+                        "古法新说：润肺生津、缓解皮肤干燥，适合秋燥干咳无痰之人"
+                    ]
+                },
+                seasonal: {
+                    title: "节气方天人相应",
+                    subtitle: "秋燥养阴法则",
+                    items: [
+                        "节气特点：秋气肃杀，燥邪当令，易伤肺阴、致皮肤干燥",
+                        "核心建议：多食白色润肺之品如梨、银耳，保持室内湿度适宜",
+                        "禁忌提示：忌辛辣燥热发散之品，以防劫耗津液、加重干燥"
+                    ]
+                }
+            },
+            winter: {
+                tea: {
+                    title: "茶饮方草木菁华",
+                    subtitle: "桂圆红枣暖身茶",
+                    items: [
+                        "配伍：桂圆肉5g、红枣3枚、干姜2片。甘温益气，温暖身心",
+                        "制法：沸水冲泡10分钟，可反复冲泡，适合全天温饮驱寒",
+                        "古法新说：温中补血、暖胃散寒，尤适冬日手脚冰凉、面色苍白"
+                    ]
+                },
+                soup: {
+                    title: "膳方食养同源",
+                    subtitle: "当归生姜羊肉汤",
+                    items: [
+                        "食材：当归10g、生姜15g、羊肉100g、红枣3枚、黄芪10g可选",
+                        "制法：羊肉焯水，与药材同炖2小时，每周1-2次温补为宜",
+                        "古法新说：温中补虚、祛寒暖身，适合冬季畏寒怕冷、气血不足"
+                    ]
+                },
+                seasonal: {
+                    title: "节气方天人相应",
+                    subtitle: "冬藏养肾之道",
+                    items: [
+                        "节气特点：寒气主令，阳气闭藏，宜养肾固本、蓄积精气",
+                        "核心建议：早卧晚起，待阳光充足后活动，适当温补勿扰阳气",
+                        "禁忌提示：忌生冷寒凉之品，以免耗伤肾阳、加重畏寒症状"
+                    ]
+                }
+            }
+        };
+
+        // Read season from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const season = urlParams.get('season') || 'spring';
+        const data = bagData[season] || bagData.spring;
+
+        // Populate boxes
+        function populateBox(boxNum, boxData) {
+            document.getElementById(`box${boxNum}-title`).innerText = boxData.title;
+            document.getElementById(`box${boxNum}-subtitle`).innerText = boxData.subtitle;
+            const list = document.getElementById(`box${boxNum}-list`);
+            list.innerHTML = '';
+            boxData.items.forEach(item => {
+                const li = document.createElement('li');
+                li.innerText = item;
+                list.appendChild(li);
+            });
+        }
+
+        populateBox(1, data.tea);
+        populateBox(2, data.soup);
+        populateBox(3, data.seasonal);
+    </script>
 </body>
 
 </html>
