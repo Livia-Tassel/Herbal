@@ -661,8 +661,8 @@
                      txt: document.querySelector('.next-page')
                 };
                 navNext.arr.style.pointerEvents = 'none';
-                navNext.arr.style.opacity = '0.5';
-                navNext.txt.style.opacity = '0.5';
+                navNext.arr.style.opacity = '0.3';
+                navNext.txt.style.color = 'rgba(139, 86, 52, 0.3)';
                 navNext.txt.style.cursor = 'default';
                 
                 // Enable Prev
@@ -673,7 +673,7 @@
                 navPrev.arr.style.visibility = 'visible'; 
                 navPrev.arr.style.opacity = '1';
                 navPrev.arr.style.pointerEvents = 'auto'; // allow click
-                navPrev.txt.style.opacity = '1';
+                navPrev.txt.style.color = 'rgba(139, 86, 52, 0.8)';
                 navPrev.txt.style.cursor = 'pointer';
                 
                 return;
@@ -789,14 +789,14 @@
                  // Enable Next
                  els.nextBtn.style.pointerEvents = 'auto';
                  els.nextBtn.style.opacity = '1.0';
-                 document.querySelector('.next-page').style.opacity = '1.0';
+                 document.querySelector('.next-page').style.color = 'rgba(139, 86, 52)';
                  document.querySelector('.next-page').style.cursor = 'pointer';
             } else {
                 els.submitBtn.style.display = 'block';
                 els.explanation.innerHTML = '';
                 els.nextBtn.style.pointerEvents = 'none';
-                els.nextBtn.style.opacity = '0.5';
-                document.querySelector('.next-page').style.opacity = '0.5';
+                els.nextBtn.style.opacity = '0.3';
+                document.querySelector('.next-page').style.color = 'rgba(139, 86, 52, 0.3)';
                 document.querySelector('.next-page').style.cursor = 'default';
             }
             
@@ -813,9 +813,9 @@
             // Prev Button Logic
             if (currentQuestionIndex === 0) {
                 // First Page: Dimmed and Disabled
-                navPrev.arr.style.opacity = '0.5';
+                navPrev.arr.style.opacity = '0.3';
                 navPrev.arr.style.pointerEvents = 'none';
-                navPrev.txt.style.opacity = '0.5';
+                navPrev.txt.style.color = 'rgba(139, 86, 52, 0.3)';
                 navPrev.txt.style.cursor = 'default';
                 // Also ensure visibility is visible (overriding previous hidden style if any remains)
                 navPrev.arr.style.visibility = 'visible'; 
@@ -823,7 +823,7 @@
                 // Other Pages: Active
                 navPrev.arr.style.opacity = '1';
                 navPrev.arr.style.pointerEvents = 'auto';
-                navPrev.txt.style.opacity = '1';
+                navPrev.txt.style.color = 'rgba(139, 86, 52, 0.8)';
                 navPrev.txt.style.cursor = 'pointer';
                 navPrev.arr.style.visibility = 'visible';
             }
@@ -831,7 +831,7 @@
             // Next Button Logic handled in UI State (enabled/disabled based on answer)
             // But we ensure the TEXT opacity matches the ARROW opacity set later
             // Reset base state for Next
-            navNext.txt.style.opacity = '0.5'; // Default disabled until answered/restored
+            navNext.txt.style.color = 'rgba(139, 86, 52, 0.3)'; // Default disabled until answered/restored
 
             // Progress Bar
             const progressPercent = (currentQuestionIndex / questions.length) * 100;
@@ -919,13 +919,13 @@
                  els.progressText.innerText = `再答对${remaining}道题，即可获得${remaining * 50}积分`;
                  // Enable Next text too
                  const navNextText = document.querySelector('.next-page');
-                 navNextText.style.opacity = '1';
+                 navNextText.style.color = 'rgba(139, 86, 52)';
                  navNextText.style.cursor = 'pointer';
             } else {
                  els.progressText.innerText = `本关挑战圆满完成！`;
                  // On last text update, we still allow Next to go to result page
                  const navNextText = document.querySelector('.next-page');
-                 navNextText.style.opacity = '1';
+                 navNextText.style.color = 'rgba(139, 86, 52)';
                  navNextText.style.cursor = 'pointer';
             }
         });

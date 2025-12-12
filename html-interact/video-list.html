@@ -196,33 +196,296 @@
         </div>
         <div class="content">
             <div class="flower"></div>
-            <div class="list">
+            <div class="list" id="herb-list">
+                <!-- Dynamically populated or Static with clicks -->
                 <div class="box">
-                    <a href="./video.html"><img src="../pic/interact/video/1-连翘.png" alt=""></a>
-                    <a href=""><h2>连翘</h2></a> <!-- 添加弹窗 -->
+                    <a href="javascript:void(0)" onclick="openVideo(0)"><img src="../pic/interact/video/1-连翘.png" alt=""></a>
+                    <a href="javascript:void(0)" onclick="openPoster(0)"><h2>连翘</h2></a>
                 </div>
                 <div class="box">
-                    <a href="#"><img src="../pic/interact/video/2-金银花.png" alt=""></a>
-                    <a href="">
-                        <h2>金银花</h2>
-                    </a> <!-- 添加弹窗 -->
+                    <a href="javascript:void(0)" onclick="openVideo(1)"><img src="../pic/interact/video/2-金银花.png" alt=""></a>
+                    <a href="javascript:void(0)" onclick="openPoster(1)"><h2>金银花</h2></a>
                 </div>
                 <div class="box">
-                    <a href="#"><img src="../pic/interact/video/3-苦杏仁.png" alt=""></a>
-                    <a href="">
-                        <h2>苦杏仁</h2>
-                    </a> <!-- 添加弹窗 -->
+                    <a href="javascript:void(0)" onclick="openVideo(2)"><img src="../pic/interact/video/3-苦杏仁.png" alt=""></a>
+                    <a href="javascript:void(0)" onclick="openPoster(2)"><h2>苦杏仁</h2></a>
                 </div>
                 <div class="box">
-                    <a href="#"><img src="../pic/interact/video/4-黄岑.png" alt=""></a>
-                    <a href="">
-                        <h2>人参</h2>
-                    </a> <!-- 添加弹窗 -->
+                    <a href="javascript:void(0)" onclick="openVideo(3)"><img src="../pic/interact/video/4-黄岑.png" alt=""></a>
+                    <a href="javascript:void(0)" onclick="openPoster(3)"><h2>黄芩</h2></a>
                 </div>
             </div>
             <div class="flower"></div>
         </div>
     </div>
+
+    <!-- Video Modal -->
+    <div class="modal-overlay" id="videoModal">
+        <div class="modal-content video-content">
+            <div class="close-btn" onclick="closeModal('videoModal')">×</div>
+            <div class="video-box">
+                <video id="modalVideo" width="100%" height="100%"></video>
+                <div class="ctrl-layer" id="ctrlLayer">
+                    <div class="center-btn" id="playPauseBtn">
+                        <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
+                            <path d="M40.0009 2.95996C19.6289 2.95996 2.96094 19.632 2.96094 40C2.96094 60.368 19.6289 77.04 40.0009 77.04C60.3729 77.04 77.0409 60.372 77.0409 40C77.0409 19.628 60.3689 2.95996 40.0009 2.95996ZM40.0009 73.952C21.3289 73.952 6.04894 58.672 6.04894 40C6.04894 21.328 21.3289 6.04796 40.0009 6.04796C58.6729 6.04796 73.9529 21.328 73.9529 40C73.9529 58.672 58.6729 73.952 40.0009 73.952Z" fill="white" />
+                            <path d="M51.6193 34.7201L38.9993 26.4801C34.7393 23.6801 31.1113 25.5481 31.1113 30.6761V49.3161C31.1113 54.4441 34.5793 56.3081 38.9993 53.5121L51.6193 45.2801C55.8793 42.1721 55.8793 37.5121 51.6193 34.7121V34.7201Z" fill="white" />
+                        </svg>
+                    </div>
+                </div>
+                <!-- Custom Progress Bar -->
+                <div class="progress-bar" id="progressBar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+            </div>
+            <h2 id="modalTitle"></h2>
+            <h3 id="modalDesc"></h3>
+        </div>
+    </div>
+
+    <!-- Poster Modal -->
+    <div class="modal-overlay" id="posterModal">
+        <div class="modal-content poster-content">
+            <div class="close-btn" onclick="closeModal('posterModal')">×</div>
+            <img id="modalPoster" src="" alt="Poster">
+        </div>
+    </div>
+
+    <style>
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85); /* Dark background */
+            z-index: 1000;
+            display: none; /* Hidden by default */
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            position: relative;
+            background: #E8DBBD url(../pic/pic-background.png); /* Theme color + Texture */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            max-width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        
+        /* Video Pop Content Size - Matched to video.html logical size but scaled down slightly if needed */
+        .video-content {
+            width: 960px;
+            /* height: auto; */
+            padding: 40px;
+            box-sizing: border-box;
+            background: #E8DBBD url(../pic/pic-background.png);
+        }
+
+        /* Poster Content Size */
+        .poster-content {
+            background: transparent;
+            box-shadow: none;
+            padding: 0;
+            text-align: center;
+        }
+        
+        .poster-content img {
+            max-width: 80vw;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            color: #8B5634;
+            cursor: pointer;
+            z-index: 10;
+            font-weight: bold;
+            line-height: 1;
+        }
+        
+        .poster-content .close-btn {
+            color: #fff;
+            right: -30px;
+            top: -10px;
+        }
+
+        /* Reusing Video CSS from video.html with tweaks */
+        .video-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
+        .video-content h2 {
+            font-size: 26px;
+            color: #8B5634;
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .video-content h3 {
+            font-size: 16px; /* Slightly smaller for popup text */
+            color: #535151;
+            line-height: 1.6;
+            text-align: left;
+            margin-top: 10px;
+        }
+
+        /* Player Controls */
+        .ctrl-layer {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            transition: background .3s;
+        }
+        .ctrl-layer.paused {
+            background: rgba(0, 0, 0, .55);
+        }
+        .center-btn {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%) scale(1);
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity .3s, transform .3s;
+        }
+        .ctrl-layer.paused .center-btn {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        .center-btn:hover {
+            transform: translate(-50%, -50%) scale(1.2);
+        }
+        .progress-bar {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            height: 6px;
+            background: rgba(255, 255, 255, .25);
+            cursor: pointer;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0;
+            background: #8B5634;
+            transition: width .1s;
+        }
+    </style>
+
+    <script>
+        // Data Configuration
+        const herbs = [
+            {
+                name: "连翘",
+                video: "../pic/interact/video/视频1-连翘.mp4",
+                poster: "../pic/interact/video/连翘.jpg",
+                desc: "连翘为木犀科植物连翘的干燥果实，主产于我国北方地区。其性微寒，味苦，归肺、心、小肠经，具有清热解毒、消肿散结、疏散风热的功效，被誉为“疮家圣药”。常用于治疗风热感冒、温病初起、高热烦渴、痈疽瘰疬等症。"
+            },
+            {
+                name: "金银花",
+                video: "../pic/interact/video/视频2-金银花.mp4",
+                poster: "../pic/interact/video/金银花.jpg",
+                desc: "金银花为忍冬科植物忍冬的干燥花蕾或初开的花，性寒味甘，归肺、心、胃经。其功效以清热解毒、疏散风热为主，兼能凉血止痢。常用于解热毒、痈肿疔疮、风热感冒、温病发热等症。"
+            },
+            {
+                name: "苦杏仁",
+                video: "../pic/interact/video/视频3-苦杏仁.mp4",
+                poster: "../pic/interact/video/苦杏仁.jpg",
+                desc: "苦杏仁为蔷薇科植物山杏、西伯利亚杏等的干燥成熟种子，性微温味苦，有小毒，归肺、大肠经。本品降气止咳平喘、润肠通便。苦杏仁含苦杏仁苷等成分，其在体内分解产生的微量氢氰酸可抑制呼吸中枢而镇咳平喘，须炮制以减毒性。"
+            },
+            {
+                name: "黄芩",
+                video: "../pic/interact/video/视频4-黄岑.mp4", // Note: Filename typo '黄岑'
+                poster: "../pic/interact/video/黄岑.jpg",     // Likely same typo in jpg
+                desc: "黄芩是唇形科植物黄芩的干燥根，性寒味苦，归肺、胆、脾、大肠、小肠经。本品清热燥湿、泻火解毒、止血安胎，尤善清上焦肺热及中焦湿热。常用于湿温暑湿、肺热咳嗽、高热烦渴、黄疸泻痢等症。"
+            }
+        ];
+
+        // Player Elements
+        const v = document.getElementById('modalVideo');
+        const box = document.getElementById('ctrlLayer');
+        const btn = document.getElementById('playPauseBtn');
+        const bar = document.getElementById('progressBar');
+        const fill = document.getElementById('progressFill');
+
+        // Functions
+        function openVideo(index) {
+            const data = herbs[index];
+            document.getElementById('modalTitle').innerText = data.name;
+            document.getElementById('modalDesc').innerText = data.desc;
+            v.src = data.video;
+            
+            document.getElementById('videoModal').style.display = 'flex';
+            // Default: Paused state
+            box.classList.add('paused'); 
+        }
+
+        function openPoster(index) {
+            const data = herbs[index];
+            document.getElementById('modalPoster').src = data.poster;
+            document.getElementById('posterModal').style.display = 'flex';
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+            if(modalId === 'videoModal') {
+                v.pause();
+                v.src = ""; // Stop buffering
+                box.classList.add('paused'); // Reset UI
+            }
+        }
+
+        // Custom Player Logic from video.html
+        function toggle(e) {
+            e.stopPropagation();
+            if (v.paused) { v.play(); } else { v.pause(); }
+        }
+
+        box.addEventListener('click', toggle);
+        btn.addEventListener('click', toggle);
+
+        v.addEventListener('play', () => box.classList.remove('paused'));
+        v.addEventListener('pause', () => box.classList.add('paused'));
+
+        v.addEventListener('timeupdate', () => {
+            if(v.duration) {
+                fill.style.width = (v.currentTime / v.duration * 100).toFixed(2) + '%';
+            }
+        });
+
+        bar.addEventListener('click', e => {
+            if(v.duration) {
+                v.currentTime = e.offsetX / bar.offsetWidth * v.duration;
+            }
+        });
+        
+        // Optional: Close modal on outside click
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal-overlay')) {
+                event.target.style.display = "none";
+                if(event.target.id === 'videoModal') {
+                    v.pause();
+                    v.src = "";
+                    box.classList.add('paused');
+                }
+            }
+        }
+    </script>
 </body>
 
 </html>
