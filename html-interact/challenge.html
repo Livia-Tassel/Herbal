@@ -184,24 +184,29 @@
         }
 
         .content .main h2 {
-            width: 288px;
-            height: 19px;
+            width: 100%;
+            height: auto;
+            min-height: 19px;
             font-size: 18px;
             color: #8B5634;
             text-align: left;
+            line-height: 1.4;
+            white-space: normal;
         }
 
         .content .main img {
             margin-top: 18px;
+            max-height: 150px; /* Constraint image height to avoid overflow */
+            object-fit: contain;
         }
 
         /* 整块容器 */
         .content .option {
-            margin-top: 40px;
-            height: 110px;
+            margin-top: 20px; /* Reduced from 40px to fit dynamic content better */
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: center; /* Changed from space-between */
+            gap: 10px; /* Added gap */
             color: #746A63;
             font-size: 16px;
         }
@@ -218,18 +223,20 @@
         /* 单行区域可点 + 未选中样式 */
         .content .option label {
             display: flex;
-            align-items: center;
-            width: 430px;
-            height: 16px;
-            line-height: 16px;
+            align-items: flex-start; /* Changed from center to support multi-line text */
+            width: 100%;
+            min-height: 16px;
+            line-height: normal; /* Changed from 16px */
             font-size: 16px;
             color: #746A63;
             cursor: pointer;
+            padding: 2px 0;
         }
 
         .content .option label span {
             font-size: 16px;
             color: #746A63;
+            display: block; /* Ensure text wraps */
         }
 
         /* 选中后文字变黑 */
@@ -245,15 +252,6 @@
             background-position: center center;
             background-size: 36px 36px;
         }
-
-        .content .flower {
-            width: 56px;
-            background-image: url(../pic/pic-goldflower.png);
-            background-repeat: no-repeat;
-            background-position: center center;
-            background-size: 36px 36px;
-        }
-
 
         .credit {
             position: absolute;
@@ -277,7 +275,7 @@
         }
 
         .credit h2 {
-            width: 113px;
+            width: 130px; /* Widened slightly */
             height: 19px;
             font-size: 18px;
             color: #8B5634;
@@ -299,19 +297,19 @@
 
         .answer {
             width: 877px;
-            height: 117px;
             margin-top: 28px;
             /* background-color: pink; */
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: flex-start;
             font-size: 18px;
             color: #616161;
             text-align: left;
+            min-height: 117px; /* preserve minimum height */
         }
 
         .answer .submit {
-            margin: auto auto;
+            margin: 0 auto;
             width: 204px;
             height: 49px;
             background: #8B5634;
@@ -321,28 +319,32 @@
             color: #FDF6E6;
             text-align: center;
             line-height: 49px;
+            cursor: pointer;
         }
 
         .answer p {
             width: 877px;
             color: #616161;
-            font-size: 18px;
+            font-size: 16px; /* Slightly reduced for better fit */
+            line-height: 1.5;
+            margin-bottom: 5px;
         }
 
         .answer p span {
             color: #8B5634;
             font-size: 18px;
+            font-weight: bold;
         }
 
         .loading {
             width: 625px;
             height: 26px;
-            margin-top: 46px;
+            margin-top: 20px; /* Reduced margin */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .loading .bar {
@@ -352,13 +354,15 @@
         }
 
         .loading .bar .len {
-            width: 125px;
+            width: 0px; /* Dynamic */
             height: 3px;
             background-color: #8B5634;
+            transition: width 0.3s ease;
         }
 
         .loading h2 {
-            width: 192px;
+            width: 100%;
+            text-align: center;
             height: 15px;
             font-size: 14px;
             line-height: 15px;
@@ -388,7 +392,8 @@
 
         .wrapper .page-box .text .last-page {
             width: 72px;
-            color: rgba(139, 86, 52, 0.5);
+            color: rgba(139, 86, 52);
+            cursor: pointer;
         }
 
         .wrapper .page-box .text .divde {
@@ -398,6 +403,7 @@
         .wrapper .page-box .text .next-page {
             width: 72px;
             color: rgba(139, 86, 52);
+            cursor: pointer;
         }
 
         .wrapper .page-box a {
@@ -406,6 +412,7 @@
             margin: 5px 0;
             background-image: url(../pic/svg-rightarrow.svg);
             background-size: contain;
+            cursor: pointer;
         }
 
         /* 第一个 a 翻转成左箭头 */
@@ -424,20 +431,20 @@
         <div class="credit">
             <div class="flower"></div>
             <!-- 每题50分 -->
-            <h2>我的积分：688</h2>
+            <h2 id="score-display">我的积分：0</h2>
         </div>
         <div class="img-herb"></div>
         <ul class="nav">
-            <a href="#" class="activate">
+            <a href="#" class="level-btn" id="nav-level-1">
                 <li class="level1"> · </li>
             </a>
-            <a href="#">
+            <a href="#" class="level-btn" id="nav-level-2">
                 <li class="level2"> · </li>
             </a>
-            <a href="#">
+            <a href="#" class="level-btn" id="nav-level-3">
                 <li class="level3"> · </li>
             </a>
-            <a href="#">
+            <a href="#" class="level-btn" id="nav-level-4">
                 <li class="level4"> · </li>
             </a>
         </ul>
@@ -454,106 +461,502 @@
         <div class="content">
             <div class="flower"></div>
             <div class="main">
-                <!-- 修改题目与图片,只有第二题有图 -->
-                <h2>请问如图所，是以下哪位传奇药材？</h2>
-                <img src="../pic/interact/challenge/pic-medicines.png" alt="">
-                <div class="option">
-                    <label>
-                        <input type="radio" name="q1" value="A">
-                        <span>A. 杜仲 - 折断时有银白色致密胶丝相连</span>
-                    </label>
-
-                    <label>
-                        <input type="radio" name="q1" value="B">
-                        <span>B. 桂枝 - 为樟科植物的嫩枝，呈长圆柱形</span>
-                    </label>
-
-                    <label>
-                        <input type="radio" name="q1" value="C">
-                        <span>C. 肉桂 - 为樟科植物的干燥树皮，气香浓烈，味甜而辣</span>
-                    </label>
-
-                    <label>
-                        <input type="radio" name="q1" value="D">
-                        <span>D. 沉香 - 为瑞香科植物含有树脂的木材，质坚沉水</span>
-                    </label>
+                <h2 id="question-text">题目加载中...</h2>
+                <img id="question-image" src="" alt="" style="display: none;">
+                <div class="option" id="option-container">
+                    <!-- Options injected here -->
                 </div>
             </div>
             <div class="flower"></div>
         </div>
         <div class="answer">
-            <button class="submit">确认</button>
-            <!-- <p><span>破题点睛：</span>此药为肉桂。其关键辨识特征正是图中所示的槽状或卷筒状的干燥树皮，与我们日常烹饪所用的桂皮同源，乃药食同源之佳品。</p>
-            <p><span>知识延展：</span>肉桂性味辛、甘，大热。归肾、脾、心、肝经。补火助阳，引火归元，散寒止痛，温通经脉。它是调理肾阳不足、命门火衰的“要药”，犹如为身体点起一把温暖的命门之火。它被誉为“温阳第一药”，在名方“肾气丸”与“桂附地黄丸”中扮演着不可或缺的“点火”角色。</p> -->
+            <button class="submit" id="submit-btn">确认</button>
+            <div id="explanation-container"></div>
         </div>
         <div class="loading">
             <div class="bar">
-                <div class="len"></div>
+                <div class="len" id="progress-bar-fill" style="width: 0;"></div>
             </div>
-            <h2>再答对9道题，即可获得500积分</h2>
+            <h2 id="progress-text">再答对8道题，即可获得400积分</h2>
         </div>
         <div class="page-box">
-            <a href="#"></a>
+            <a href="#" id="prev-btn" style="visibility: hidden;"></a> <!-- Hide prev for now as per flow -->
             <div class="text">
                 <div class="last-page">上一题</div>
                 <div class="divde">/</div>
                 <div class="next-page">下一题</div>
             </div>
-            <a href="#"></a>
+            <a href="#" id="next-btn" style="pointer-events: none; opacity: 0.5;"></a>
         </div>
     </div>
     <script>
-        /* 绿勾、棕叉 SVG 字符串 */
-        const iconCheck = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.592 1C10.728 4.02549 7.2 7.84589 5.608 9.76014L1.72 6.66976L0 8.073L6.712 15C7.864 11.9988 11.528 6.13441 16 1.96524L15.592 1Z" fill="#11AA86"/>
-    </svg>`;
+        /* Data Source */
+        const questions = [
+            {
+                id: 1,
+                level: 1,
+                question: "请问如图所示，是以下哪位传奇药材？",
+                img: "../pic/interact/challenge/pic-medicines.png",
+                options: [
+                    { key: "A", text: "A. 杜仲 - 折断时有银白色致密胶丝相连" },
+                    { key: "B", text: "B. 桂枝 - 为樟科植物的嫩枝，呈长圆柱形" },
+                    { key: "C", text: "C. 肉桂 - 为樟科植物的干燥树皮，气香浓烈，味甜而辣" },
+                    { key: "D", text: "D. 沉香 - 为瑞香科植物含有树脂的木材，质坚沉水" }
+                ],
+                correct: "C",
+                breakdown: "此药为肉桂。其关键辨识特征正是图中所示的槽状或卷筒状的干燥树皮，与我们日常烹饪所用的桂皮同源，乃药食同源之佳品。",
+                extension: "肉桂性味辛、甘，大热。归肾、脾、心、肝经。补火助阳，引火归元，散寒止痛，温通经脉。它是调理肾阳不足、命门火衰的“要药”，犹如为身体点起一把温暖的命门之火。它被誉为“温阳第一药”，在名方“肾气丸”与“桂附地黄丸”中扮演着不可或缺的“点火”角色。"
+            },
+            {
+                id: 2,
+                level: 1,
+                question: "根据图中所示药材的外形特征，判断其应为以下哪一味传奇药材？",
+                img: "../pic/interact/challenge/pic-tongcao.png",
+                options: [
+                    { key: "A", text: "A. 鸡血藤，切面可见红褐色或棕褐色树脂状分泌物与木质部相间排列" },
+                    { key: "B", text: "B. 通草，表面洁白色，体轻质松，断面有银白色光泽" },
+                    { key: "C", text: "C. 钩藤，为带单钩或双钩的茎枝，表面紫红色或红棕色" },
+                    { key: "D", text: "D. 苏木，表面黄红色至棕红色，断面可见年轮及髓部小孔" }
+                ],
+                correct: "B",
+                breakdown: "图中药材呈洁白色，质地体轻而松软。第一张图可见切片呈环状，中间空心；第二、三张图则展示了其髓心被卷曲成卷轴状，具有银白色光泽。这些特征完全符合中药“通草”的描述。通草的原药材是五加科植物檱木的茎髓，因其质地轻盈、颜色洁白而极易辨识。",
+                extension: "中药通草性味甘、淡，微寒，归肺、胃经。它具有清热利湿、通气下乳的功效。通草常用于治疗湿温病症、小便不利、水肿等，但其最著名的应用是针对产后乳汁不下，是经典方剂中常用的通乳之药。在使用时，需要将其与具有相似名称，但功效侧重于清热利水的“木通”相区分。"
+            },
+            {
+                id: 3,
+                level: 2,
+                question: "关于“君臣佐使”配伍原则，下列理解错误的是：",
+                img: null,
+                options: [
+                    { key: "A", text: "A. “君药”主治主要病证，为方中核心" },
+                    { key: "B", text: "B. “臣药”辅助君药加强主治或兼治次病" },
+                    { key: "C", text: "C. “佐药”仅指缓和药性、减少毒性的药物" },
+                    { key: "D", text: "D. “使药”有引经、调和诸药之意" }
+                ],
+                correct: "C",
+                breakdown: "选项 C 的描述是错误的，因为它过于片面。佐药的作用不仅仅是缓和药性或减少毒性（即佐制或反佐），它还包括佐助药，即协助君药加强主治作用，或协助臣药治疗兼证。因此，佐药是方剂中功能最复杂、最灵活的角色之一。",
+                extension: "“君臣佐使”是中医方剂配伍的核心原则。君药主治主要病证，为方中核心。臣药辅助君药加强主治或兼治次病。使药则有引经、调和诸药之意。这种配伍体现了中医对病情的全面认识和对药性的精妙调配，确保方剂高效且安全。"
+            },
+            {
+                id: 4,
+                level: 2,
+                question: "在“麻黄汤”（麻黄、桂枝、杏仁、甘草）中用于“宣肺平喘”的主要药物属于臣药，该药是：",
+                img: null,
+                options: [
+                    { key: "A", text: "A. 麻黄" },
+                    { key: "B", text: "B. 桂枝" },
+                    { key: "C", text: "C. 杏仁" },
+                    { key: "D", text: "D. 甘草" }
+                ],
+                correct: "C",
+                breakdown: "在麻黄汤中，麻黄是君药，主宣肺平喘；桂枝是臣药，助麻黄发汗；杏仁是佐药，降气平喘，协助麻黄加强宣肺平喘的功效。题目要求找出用于“宣肺平喘”的主要药物中，属于“臣药”的药物，这在原方中是矛盾的，因为麻黄是君药，杏仁是佐药。但若理解为“宣肺平喘药”的角色判定，杏仁（佐药）承担了主要的平喘作用。",
+                extension: "麻黄汤是《伤寒论》中的解表剂代表方，主治风寒束表、肺气失宣。方中的杏仁性苦，具有降气平喘的功效，可以防止君药麻黄发散太过而耗伤肺气。因此，杏仁虽为佐药，却是确保麻黄汤“宣肺而不伤正”的关键药物，在平喘方面起着重要协同作用。"
+            },
+            {
+                id: 5,
+                level: 3,
+                question: "患者出现“咽喉红肿疼痛、口渴欲饮、舌红苔黄”，应优先考虑下列哪味药？",
+                img: null,
+                options: [
+                    { key: "A", text: "A. 板蓝根" },
+                    { key: "B", text: "B. 熟地黄" },
+                    { key: "C", text: "C. 肉桂" },
+                    { key: "D", text: "D. 黄芩" }
+                ],
+                correct: "A",
+                breakdown: "患者的症状“咽喉红肿疼痛、口渴欲饮、舌红苔黄”，是一组典型的风热或热毒炽盛的临床表现。在选项中，板蓝根具有清热解毒、利咽的专长，是治疗热毒导致的咽喉肿痛的首选药物。其他选项如熟地黄和肉桂，一滋阴一温阳，皆不适用于这种实热证。",
+                extension: "板蓝根性味苦、寒，归心、胃经。它能清热解毒、凉血利咽，在中医领域广泛应用于感冒、流行性感冒等风热病症，特别是用于治疗扁桃体炎、腮腺炎等急性炎症。它的应用体现了“热者寒之”的治疗原则，迅速清除体内的热毒邪气。"
+            },
+            {
+                id: 6,
+                level: 3,
+                question: "若患者“胃脘冷痛、喜温喜按、食少便溏”，更适合选择：",
+                img: null,
+                options: [
+                    { key: "A", text: "A. 陈皮" },
+                    { key: "B", text: "B. 干姜" },
+                    { key: "C", text: "C. 大黄" },
+                    { key: "D", text: "D. 石膏" }
+                ],
+                correct: "B",
+                breakdown: "患者表现为“胃脘冷痛、喜温喜按、食少便溏”，这是典型的脾胃虚寒证。在所有选项中，只有干姜性味辛、热，具有温中散寒、回阳通脉的功效，正是对治胃寒冷痛的“要药”。大黄和石膏均为苦寒之药，与虚寒证的治疗方向完全相反。",
+                extension: "干姜是姜科植物姜的干燥根茎，与新鲜的生姜相比，干姜温中散寒的力量更强、更持久。它是治疗脾胃虚寒、脘腹冷痛的经典方剂理中丸中的核心药物。使用干姜可以温暖中焦，恢复脾胃的运化功能，从而改善冷痛、食欲不振和稀溏的症状。"
+            },
+            {
+                id: 7,
+                level: 4,
+                question: "某药“苦寒，归肺、大肠经”，主清肺泻火、止血，多用于肺热咳嗽、鼻衄、咯血等证。最可能是：",
+                img: null,
+                options: [
+                    { key: "A", text: "A. 桔梗" },
+                    { key: "B", text: "B. 黄连" },
+                    { key: "C", text: "C. 地榆" },
+                    { key: "D", text: "D. 桑白皮" }
+                ],
+                correct: "D",
+                breakdown: "该药的辨识要点在于其独特的功效组合：“苦寒，归肺、大肠经”，主清肺泻火、止血。桑白皮恰好符合“清肺泻火、止咳平喘”的功效，且能凉血止血，多用于肺热咳嗽和咯血证。其他药物如黄连主治湿热，桔梗主宣肺，皆非“泻火”的专药。",
+                extension: "桑白皮是桑树的根皮，以其泻肺平喘的作用而著名。中医认为“肺气郁闭，则为咳喘”，桑白皮通过泻肺火、降肺气来达到平喘止咳的目的。它既能清热，又能止血，因此成为治疗热性咳嗽和肺热导致的鼻衄、咯血的常用中药。"
+            },
+            {
+                id: 8,
+                level: 4,
+                question: "某药材“外表呈灰黑色，内呈蜂窝状空腔结构”，具有化痰止咳、散风解毒的作用，常用于风热咳嗽及咽喉肿痛。应判断为：",
+                img: null,
+                options: [
+                    { key: "A", text: "A. 海蛤壳" },
+                    { key: "B", text: "B. 浙贝母" },
+                    { key: "C", text: "C. 桔梗" },
+                    { key: "D", text: "D. 青礞石" }
+                ],
+                correct: "B",
+                breakdown: "该药的特征性状是“外表呈灰黑色，内呈蜂窝状空腔结构”，同时具有化痰止咳、散风解毒的功效，常用于风热咳嗽及咽喉肿痛。浙贝母是清热化痰的要药，其经过炮制的“贝母花”常呈现出这种独特的形态。",
+                extension: "浙贝母性苦、寒，归肺、心经。它主要用于清热化痰、散结消肿，对于风热引起的咳嗽、痰黄、咽喉肿痛效果显著。与川贝母偏于润肺止咳不同，浙贝母的清热化痰和散结力量更强，因此更适合治疗痰热互结、热毒壅盛的病症。"
+            }
+        ];
 
-        const iconCross = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-    <path d="M15.6365 1.18108L14.8189 0.363465C14.3343 -0.12116 13.5412 -0.12116 13.0565 0.363497L6.99073 6.42925L2.94342 2.382C2.45875 1.89734 1.66568 1.89734 1.18106 2.382L0.36348 3.19959C-0.12116 3.68425 -0.12116 4.47727 0.36348 4.96199L4.41073 9.00923L0.363512 13.0565C-0.121129 13.5412 -0.121129 14.3343 0.363512 14.8189L1.18112 15.6365C1.66575 16.1212 2.45881 16.1212 2.94348 15.6365L6.99074 11.5893L11.0379 15.6364C11.5227 16.1211 12.3158 16.1211 12.8004 15.6365L13.618 14.8189C14.1026 14.3343 14.1026 13.5412 13.618 13.0565L9.57074 9.00924L15.6366 2.94345C16.1211 2.45875 16.1211 1.66569 15.6365 1.18108Z" fill="#AA4200"/>
-    </svg>`;
+        /* State State */
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let isAnswered = false;
 
-        /* 绑定确认按钮 */
-        document.querySelector('.submit').addEventListener('click', function () {
-            const radios = document.querySelectorAll('.option input[name="q1"]');
+        /* DOM Elements */
+        const els = {
+            score: document.getElementById('score-display'),
+            questionText: document.getElementById('question-text'),
+            questionImage: document.getElementById('question-image'),
+            options: document.getElementById('option-container'),
+            submitBtn: document.getElementById('submit-btn'),
+            explanation: document.getElementById('explanation-container'),
+            progressBar: document.getElementById('progress-bar-fill'),
+            progressText: document.getElementById('progress-text'),
+            nextBtn: document.getElementById('next-btn'),
+            prevBtn: document.getElementById('prev-btn'),
+            levels: [
+                document.getElementById('nav-level-1'),
+                document.getElementById('nav-level-2'),
+                document.getElementById('nav-level-3'),
+                document.getElementById('nav-level-4')
+            ]
+        };
+
+        /* Icons */
+        const iconCheck = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.592 1C10.728 4.02549 7.2 7.84589 5.608 9.76014L1.72 6.66976L0 8.073L6.712 15C7.864 11.9988 11.528 6.13441 16 1.96524L15.592 1Z" fill="#11AA86"/></svg>`;
+        const iconCross = `<svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.6365 1.18108L14.8189 0.363465C14.3343 -0.12116 13.5412 -0.12116 13.0565 0.363497L6.99073 6.42925L2.94342 2.382C2.45875 1.89734 1.66568 1.89734 1.18106 2.382L0.36348 3.19959C-0.12116 3.68425 -0.12116 4.47727 0.36348 4.96199L4.41073 9.00923L0.363512 13.0565C-0.121129 13.5412 -0.121129 14.3343 0.363512 14.8189L1.18112 15.6365C1.66575 16.1212 2.45881 16.1212 2.94348 15.6365L6.99074 11.5893L11.0379 15.6364C11.5227 16.1211 12.3158 16.1211 12.8004 15.6365L13.618 14.8189C14.1026 14.3343 14.1026 13.5412 13.618 13.0565L9.57074 9.00924L15.6366 2.94345C16.1211 2.45875 16.1211 1.66569 15.6365 1.18108Z" fill="#AA4200"/></svg>`;
+
+        /* Render Function */
+        function renderQuestion() {
+            if (currentQuestionIndex >= questions.length) {
+                // End Game State
+                els.questionText.innerText = "恭喜你！完成了所有挑战！";
+                els.questionImage.style.display = 'none';
+                els.options.innerHTML = `<div style="text-align:center; width:100%; margin-top:20px; font-size:20px;">最终得分：${score} / 400</div>`;
+                els.submitBtn.style.display = 'none';
+                els.explanation.innerHTML = '';
+                els.progressText.innerText = `闯关完成`;
+                els.progressBar.style.width = '100%';
+                
+                // Disable Nav
+                const navNext = {
+                     arr: els.nextBtn,
+                     txt: document.querySelector('.next-page')
+                };
+                navNext.arr.style.pointerEvents = 'none';
+                navNext.arr.style.opacity = '0.5';
+                navNext.txt.style.opacity = '0.5';
+                navNext.txt.style.cursor = 'default';
+                
+                // Enable Prev
+                const navPrev = {
+                     arr: els.prevBtn,
+                     txt: document.querySelector('.last-page')
+                };
+                navPrev.arr.style.visibility = 'visible'; 
+                navPrev.arr.style.opacity = '1';
+                navPrev.arr.style.pointerEvents = 'auto'; // allow click
+                navPrev.txt.style.opacity = '1';
+                navPrev.txt.style.cursor = 'pointer';
+                
+                return;
+            }
+
+            const q = questions[currentQuestionIndex];
+            isAnswered = false; // Reset state for new question (unless we want to support reviewing answered ones? For now, assume linear progress or re-answer disabled if going back? 
+            // Better logic: if we go back, we should probably just show the question again. 
+            // But simple logic for now: linear forward. "Previous" might just be to look back?
+            // Actually, if user goes back, we should probably restore the state of that question if it was answered.
+            // But simple requirement: just quiz. Let's keep it simple: Previous moves index back, state is reset or re-evaluated.
+            // Since requirements didn't specify "Review Mode", I'll just allow navigating. 
+            // CAUTION: If going back resets "isAnswered", user can score points again? 
+            // To prevent cheating, we should track answered questions specifically.
+            
+            // Refined Logic:
+            // We won't easily support "Review" without more state. 
+            // But for "Next/Prev not adapted", I'll ensuring they work.
+            // For now, let's just make 'Next' available only after answering.
+            // 'Prev' can be available to look back, but let's be careful about score.
+            
+            // Actually, usually in these quizzes, you can't go back and change answers. 
+            // So 'Previous' might be disabled or just for viewing.
+            // Let's just implement basic Prev behavior: Go back index.
+            // If we go back, we probably shouldn't allow re-submitting if already done.
+            // Let's stick to the current linear flow but fix the buttons layout as requested.
+            // If the user wants to go back, I will just decrement index.
+            
+            // Check if this question has been answered before? 
+            // The current simple implementation doesn't store per-question state.
+            // I will implement a simple "answeredQuestions" set to track.
+            
+            
+            // Update Level Indicator
+            els.levels.forEach(l => l.classList.remove('activate'));
+            const levelIdx = Math.floor(currentQuestionIndex / 2);
+            if(els.levels[levelIdx]) els.levels[levelIdx].classList.add('activate');
+
+            // Set Content
+            els.questionText.innerText = q.question;
+            
+            if (q.img) {
+                els.questionImage.src = q.img;
+                els.questionImage.style.display = 'block';
+            } else {
+                els.questionImage.style.display = 'none';
+            }
+
+            // Set Options
+            els.options.innerHTML = '';
+            
+            // Check if we have a recorded answer for this question
+            // Check if we have a recorded answer for this question
+            const record = state.answers[q.id];
+            
+            q.options.forEach(opt => {
+                const label = document.createElement('label');
+                const checked = record && record.userVal === opt.key ? 'checked' : '';
+                
+                let content = `
+                    <input type="radio" name="option" value="${opt.key}" ${checked}>
+                    <span>${opt.text}</span>
+                `;
+                
+                // If already answered, show icons immediately
+                if (record) {
+                     // Add icons based on record
+                     // This is getting complex to reconstruct DOM. 
+                     // Let's simplify: if we go back to an answered question, current logic resets it.
+                     // I will maintain the 'linear' flow primarily but enabling Prev button visibility.
+                }
+                
+                label.innerHTML = content;
+                els.options.appendChild(label);
+            });
+
+            // UI State
+            // UI State
+            if (record) {
+                 isAnswered = true;
+                 
+                 // Restore icons
+                 const radios = els.options.querySelectorAll('input[name="option"]');
+                 radios.forEach(radio => {
+                    const label = radio.closest('label');
+                    const span = label.querySelector('span');
+                    
+                    const iconBox = document.createElement('i');
+                    iconBox.className = 'icon';
+                    iconBox.style.cssText = 'position:absolute;left:-24px;top:50%;transform:translateY(-50%);width:16px;height:16px;';
+                    
+                    if (radio.value === q.correct) {
+                        span.style.color = '#11AA86';
+                        iconBox.innerHTML = iconCheck;
+                        label.style.position = 'relative';
+                        label.appendChild(iconBox);
+                    } else if (record.userVal === radio.value && radio.value !== q.correct) {
+                         // User wrong selection
+                        iconBox.innerHTML = iconCross;
+                        label.style.position = 'relative';
+                        label.appendChild(iconBox);
+                    }
+                 });
+
+                 // Restore Explanation
+                 els.submitBtn.style.display = 'none';
+                 els.explanation.innerHTML = `
+                    <p><span>破题点睛：</span>${q.breakdown}</p>
+                    <div style="margin-top:10px;"></div>
+                    <p><span>知识延展：</span>${q.extension}</p>
+                 `;
+
+                 // Enable Next
+                 els.nextBtn.style.pointerEvents = 'auto';
+                 els.nextBtn.style.opacity = '1.0';
+                 document.querySelector('.next-page').style.opacity = '1.0';
+                 document.querySelector('.next-page').style.cursor = 'pointer';
+            } else {
+                els.submitBtn.style.display = 'block';
+                els.explanation.innerHTML = '';
+                els.nextBtn.style.pointerEvents = 'none';
+                els.nextBtn.style.opacity = '0.5';
+                document.querySelector('.next-page').style.opacity = '0.5';
+                document.querySelector('.next-page').style.cursor = 'default';
+            }
+            
+            // Nav Button State Management
+            const navPrev = {
+                 arr: els.prevBtn,
+                 txt: document.querySelector('.last-page')
+            };
+            const navNext = {
+                 arr: els.nextBtn,
+                 txt: document.querySelector('.next-page')
+            };
+
+            // Prev Button Logic
+            if (currentQuestionIndex === 0) {
+                // First Page: Dimmed and Disabled
+                navPrev.arr.style.opacity = '0.5';
+                navPrev.arr.style.pointerEvents = 'none';
+                navPrev.txt.style.opacity = '0.5';
+                navPrev.txt.style.cursor = 'default';
+                // Also ensure visibility is visible (overriding previous hidden style if any remains)
+                navPrev.arr.style.visibility = 'visible'; 
+            } else {
+                // Other Pages: Active
+                navPrev.arr.style.opacity = '1';
+                navPrev.arr.style.pointerEvents = 'auto';
+                navPrev.txt.style.opacity = '1';
+                navPrev.txt.style.cursor = 'pointer';
+                navPrev.arr.style.visibility = 'visible';
+            }
+            
+            // Next Button Logic handled in UI State (enabled/disabled based on answer)
+            // But we ensure the TEXT opacity matches the ARROW opacity set later
+            // Reset base state for Next
+            navNext.txt.style.opacity = '0.5'; // Default disabled until answered/restored
+
+            // Progress Bar
+            const progressPercent = (currentQuestionIndex / questions.length) * 100;
+            els.progressBar.style.width = `${progressPercent}%`;
+            els.progressText.innerText = `再答对${questions.length - currentQuestionIndex}道题，即可获得${(questions.length - currentQuestionIndex)*50}积分`;
+        }
+
+        /* Logic State */
+        // We added a simple way to prevent double scoring: 'answeredSet'
+        /* Logic State */
+        // We added a simple way to prevent double scoring: 'answeredSet'
+        const state = {
+             answeredSet: new Set(),
+             answers: {}
+        };
+
+        /* Submit Logic */
+        els.submitBtn.addEventListener('click', function() {
+            if (isAnswered) return;
+
+            const radios = document.querySelectorAll('input[name="option"]');
             const selected = [...radios].find(r => r.checked);
-            if (!selected) { alert('请先选择一个答案！'); return; }
+            
+            if (!selected) {
+                alert('请先选择一个答案！');
+                return;
+            }
 
-            const userVal = selected.value;          // A/B/C/D
-            const correctVal = 'C';                  // 正确答案
+            isAnswered = true;
+            const q = questions[currentQuestionIndex];
+            const userVal = selected.value;
+            
+            // Calculate Score only if not already answered
+            if (!state.answeredSet.has(q.id)) {
+                if (userVal === q.correct) {
+                    score += 50;
+                    els.score.innerText = `我的积分：${score}`;
+                }
+                state.answeredSet.add(q.id);
+                // Save Answer
+                state.answers[q.id] = { userVal: userVal };
+            }
 
+            // UI Feedback
             radios.forEach(radio => {
                 const label = radio.closest('label');
                 const span = label.querySelector('span');
-                /* 清空上一次图标 */
-                label.querySelectorAll('.icon').forEach(i => i.remove());
-
-                /* 创建图标容器（绝对定位） */
+                
                 const iconBox = document.createElement('i');
                 iconBox.className = 'icon';
                 iconBox.style.cssText = 'position:absolute;left:-24px;top:50%;transform:translateY(-50%);width:16px;height:16px;';
 
-                if (radio.value === correctVal) {
-                    /* 正确项：文字变绿 + 绿勾 */
+                if (radio.value === q.correct) {
                     span.style.color = '#11AA86';
                     iconBox.innerHTML = iconCheck;
                     label.style.position = 'relative';
                     label.appendChild(iconBox);
-                } else if (radio === selected) {
-                    /* 用户选错的项：棕叉 */
+                } else if (radio.checked && radio.value !== q.correct) {
+                    // Wrong selection
                     iconBox.innerHTML = iconCross;
                     label.style.position = 'relative';
                     label.appendChild(iconBox);
                 }
             });
 
-            /* 按钮消失 + 解析出现 */
-            document.querySelector('.submit').style.display = 'none';
-            document.querySelector('.answer').insertAdjacentHTML(
-                'beforeend',
-                `<p><span>破题点睛：</span>此药为肉桂。其关键辨识特征正是图中所示的槽状或卷筒状的干燥树皮，与我们日常烹饪所用的桂皮同源，乃药食同源之佳品。</p>
-         <p><span>知识延展：</span>肉桂性味辛、甘，大热。归肾、脾、心、肝经。补火助阳，引火归元，散寒止痛，温通经脉。它是调理肾阳不足、命门火衰的“要药”，犹如为身体点起一把温暖的命门之火。它被誉为“温阳第一药”，在名方“肾气丸”与“桂附地黄丸”中扮演着不可或缺的“点火”角色。</p>`
-            );
+            // Show Explanation
+            els.submitBtn.style.display = 'none';
+            els.explanation.innerHTML = `
+                <p><span>破题点睛：</span>${q.breakdown}</p>
+                <div style="margin-top:10px;"></div>
+                <p><span>知识延展：</span>${q.extension}</p>
+            `;
+
+            // Enable Next
+            els.nextBtn.style.pointerEvents = 'auto';
+            els.nextBtn.style.opacity = '1.0';
+
+            // Update Progress Bar
+            const newPercent = ((currentQuestionIndex + 1) / questions.length) * 100;
+            els.progressBar.style.width = `${newPercent}%`;
+            
+            // Update remaining text
+            const remaining = questions.length - (currentQuestionIndex + 1);
+            if (remaining > 0) {
+                 els.progressText.innerText = `再答对${remaining}道题，即可获得${remaining * 50}积分`;
+                 // Enable Next text too
+                 const navNextText = document.querySelector('.next-page');
+                 navNextText.style.opacity = '1';
+                 navNextText.style.cursor = 'pointer';
+            } else {
+                 els.progressText.innerText = `本关挑战圆满完成！`;
+                 // On last text update, we still allow Next to go to result page
+                 const navNextText = document.querySelector('.next-page');
+                 navNextText.style.opacity = '1';
+                 navNextText.style.cursor = 'pointer';
+            }
         });
+
+        /* Button Listeners */
+        els.nextBtn.addEventListener('click', function(e) { e.preventDefault(); nextQuestion(); });
+        document.querySelector('.next-page').addEventListener('click', function(e) { e.preventDefault(); if(!els.nextBtn.style.pointerEvents.includes('none')) nextQuestion(); });
+
+        els.prevBtn.addEventListener('click', function(e) { e.preventDefault(); prevQuestion(); });
+        document.querySelector('.last-page').addEventListener('click', function(e) { e.preventDefault(); prevQuestion(); });
+
+        function nextQuestion() {
+            if(!isAnswered && currentQuestionIndex < questions.length) return; 
+            currentQuestionIndex++;
+            renderQuestion();
+        }
+
+        function prevQuestion() {
+            if(currentQuestionIndex > 0) {
+                currentQuestionIndex--;
+                // Note: Going back resets the view to "unanswered" visual state in this simple implementation,
+                // but 'answeredSet' prevents double scoring. 
+                // User has to re-select to see explanation again.
+                 renderQuestion();
+            }
+        }
+        
+
+
+        /* Init */
+        renderQuestion();
     </script>
 </body>
 
