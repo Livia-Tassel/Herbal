@@ -474,22 +474,129 @@
             document.getElementById('assistantLinkOverlay').style.display = 'none';
         }
 
-        // 获取第一个“查看仙灵本体与药效”按钮（即第一个 <a>）以及其他原有逻辑
-        const firstLink = document.querySelector('.cards .card:first-of-type a');
-        const herbOverlay = document.querySelector('.overlay:not(#assistantLinkOverlay)'); // Select original overlay
-        const herbCloseBtn = herbOverlay.querySelector('.close-btn');
+        // Herb Details Data
+        const herbData = [
+            {
+                name: "黄精",
+                offset: "0px", 
+                content: `
+                    <dt><span>【</span>核心药效<span>】</span></dt>
+                    <dd>
+                        <li>脾胃虚弱：用于身体倦怠乏力、食少口干、舌红少苔。应用黄精甘平滋润，能补气养阴，为脾胃提供持续的生机和营养，使其功能逐渐恢复。</li>
+                        <li>肺燥咳嗽：用于干咳少痰、口燥咽干。她能润肺，滋养肺阴，缓解肺燥热。</li>
+                        <li>肾虚精亏：用于腰膝酸软、头晕耳鸣。黄精入肾经，能益肾精，缓慢而持久地增强体质，强筋健骨。 </li>
+                    </dd>`
+            },
+            {
+                name: "金银花",
+                offset: "-190px",
+                content: `
+                    <dt><span>【</span>核心药效<span>】</span></dt>
+                    <dd>
+                        <li>外感风热：用于发热、微恶风寒、头痛、咽喉肿痛、口渴。金银花能疏散风热邪气，尤其擅长清解咽喉部的热毒，快速缓解喉咙疼痛。</li>
+                        <li>温病发热：在中医温病学中，她是“卫气营血”各个阶段都能使用的要药。她能清气分热，也能透热转气，防止病邪深入。</li>
+                        <li>热毒疮痈：用于疖子、丹毒、肺痈（肺脓肿）、肠痈（阑尾炎）。她具有强大的清热解毒、消痈散结功效，内服外用均可。</li>
+                        <li>热毒血痢：用于便下脓血，伴有肛门灼热。她能清除肠道内的热毒，凉血止痢。</li>
+                    </dd>`
+            },
+            {
+                name: "蒲公英",
+                offset: "-380px",
+                content: `
+                    <dt><span>【</span>核心药效<span>】</span></dt>
+                    <dd>
+                        <li>痈肿疮毒：用于乳痈、疔毒等各类热毒疮肿。她能清热解毒、消痈散结，无论内服还是外敷，都有显著的化解作用。</li>
+                        <li>湿热黄疸/淋证：用于湿热蕴结引起的黄疸、小便短赤涩痛的淋证。她能利湿通淋，疏泄肝胃湿热，清除体内郁结的湿毒。</li>
+                        <li>肝胃郁热：用于肝火或胃火导致的目赤肿痛。她能疏散热毒，具有开阔的能量，清除体内郁结，带来清爽无碍之感。</li>
+                    </dd>`
+            },
+            {
+                name: "鱼腥草",
+                offset: "-570px",
+                content: `
+                    <dt><span>【</span>核心药效<span>】</span></dt>
+                    <dd>
+                        <li>肺热咳嗽/肺痈：用于痰热壅肺引起的咳嗽、咯吐黄脓痰，以及肺痈（肺脓肿）。她能清热解毒、排脓消痈，是治疗肺热病的要药。</li>
+                        <li>热毒痢疾：用于湿热引起的腹泻、里急后重等。她能清热利湿，清除肠道湿热毒邪。</li>
+                        <li>湿热淋证：用于小便涩痛、淋漓不畅。她能利尿通淋，祛除下焦湿热。她以清利的力量，守护呼吸系统和湿热病证的安宁。</li>
+                    </dd>`
+            },
+            {
+                name: "花椒",
+                offset: "-760px",
+                content: `
+                    <dt><span>【</span>核心药效<span>】</span></dt>
+                    <dd>
+                        <li>脾胃虚寒：用于脘腹冷痛、呕吐、泄泻。她能温中散寒，驱散脾胃的寒邪，恢复中焦阳气。</li>
+                        <li>寒湿痹痛：用于湿寒导致的肢体、关节冷痛。她能除湿止痛，疏通经络。</li>
+                        <li>虫积腹痛/疥癣瘙痒：用于肠道寄生虫引起的腹痛，以及皮肤湿疹、疥癣。她能杀虫、止痒，内服外用皆可。她以热烈的辛温之力，为身体注入温暖和活血的能量。</li>
+                    </dd>`
+            },
+            {
+                name: "酸枣",
+                offset: "-950px",
+                content: `
+                    <dt><span>【</span>核心药效<span>】</span></dt>
+                    <dd>
+                        <li>虚烦失眠：用于心肝血虚或阴虚血少引起的虚烦不眠、惊悸、多梦。她能养心阴、益肝血，使心神得养，从而达到安神的效果，是治疗失眠的良药。</li>
+                        <li>体虚盗汗/自汗：用于身体虚弱导致的夜间盗汗或白天自汗。她能敛汗生津，固涩体表，防止津液流失。</li>
+                        <li>津伤口渴：用于热病或体虚引起的口渴咽干。她能生津止渴，滋润身体。</li>
+                    </dd>`
+            },
+            {
+                name: "艾叶",
+                offset: "-1140px",
+                content: `
+                    <dt><span>【</span>核心药效<span>】</span></dt>
+                    <dd>
+                        <li>虚寒性出血：用于崩漏、月经过多等下焦虚寒引起的出血症。她能温经止血，温暖经络，固摄血液。</li>
+                        <li>寒湿腹痛/经痛：用于寒湿凝滞导致的腹痛、女性痛经。她能散寒止痛，驱除阴寒。</li>
+                        <li>湿疹瘙痒：外用煎汤熏洗，能祛湿止痒。同时，她也是灸法中的主要材料，通过燃烧的纯阳之气，温通经络，培补元气。她是纯阳温暖，驱散阴寒的温阳使者。</li>
+                    </dd>`
+            },
+            {
+                name: "黄岑",
+                offset: "-1330px",
+                content: `
+                    <dt><span>【</span>核心药效<span>】</span></dt>
+                    <dd>
+                        <li>湿热证：用于湿热蕴结引起的黄疸、泻痢、小便短赤。她能清热燥湿，清除脾胃大肠湿热。</li>
+                        <li>肺热咳嗽：用于肺热壅盛导致的咳嗽、高热。她能清肺火。</li>
+                        <li>热毒证：用于痈肿疮毒、目赤肿痛等。她能泻火解毒，清除上焦实火。</li>
+                        <li>胎动不安：用于热盛或湿热所致的妊娠胎动不安。她能清热安胎。她以冷静的智慧，平息体内的热烈与焦躁。</li>
+                    </dd>`
+            }
+        ];
 
-        // 点击该链接显示弹窗
-        // Note: This logic for herb cards likely needs to apply to ALL cards, not just the first one. 
-        // But respecting the original file's limit to firstLink unless asked to fix.
-        // Actually, let's keep the original logic for the herb popup exactly as is, just ensuring we target the right overlay.
-        
-        firstLink.addEventListener('click', function (event) {
-            event.preventDefault(); // 阻止跳转 #
-            herbOverlay.style.display = 'flex';
+        // Herb Popup Logic
+        const herbOverlay = document.querySelector('.overlay:not(#assistantLinkOverlay)');
+        const herbCloseBtn = herbOverlay.querySelector('.close-btn');
+        const herbImg = herbOverlay.querySelector('.img');
+        const herbList = herbOverlay.querySelector('.list dl');
+
+        // Add Click Listeners to all 'View Details' links
+        const detailLinks = document.querySelectorAll('.cards .card a');
+        detailLinks.forEach((link, index) => {
+            link.addEventListener('click', function(event) {
+                event.preventDefault();
+                
+                // Get data for clicked herb
+                // Assuming index matches data order (Yellow Essence, Honeysuckle...) 
+                // A safer way would be data attributes but index works if order is static
+                if (index < herbData.length) {
+                    const data = herbData[index];
+                    
+                    // Update Popup Content
+                    herbImg.style.backgroundPosition = `0px ${data.offset}`;
+                    herbList.innerHTML = data.content;
+                    
+                    // Show Popup
+                    herbOverlay.style.display = 'flex';
+                }
+            });
         });
 
-        // 点击关闭按钮隐藏弹窗
+        // Close Popup
         herbCloseBtn.addEventListener('click', function () {
             herbOverlay.style.display = 'none';
         });
