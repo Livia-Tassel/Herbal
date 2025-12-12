@@ -93,104 +93,92 @@
             width: 694px;
             display: flex;
             flex-direction: column;
+            justify-content: center;
         }
 
         .content .question h2 {
-            margin-top: 44px;
+            margin-top: 0px;
             width: 694px;
-            height: 21px;
-            line-height: 21px;
+            height: auto;
+            min-height: 21px;
+            line-height: 1.5;
             font-size: 20px;
             color: #8B5634;
             text-align: center;
-        }
-
-        .content .question .topic-list li {
-            list-style-type: disc;
-            width: 195px;
-            height: 19px;
-            font-size: 18px;
-            line-height: 19px;
-            color: #8B5634;
-            text-align: left;
-            font-style: normal;
-            margin-top: 42px;
-            margin-bottom: 34px;
-        }
-
-        /* 使用 ::marker 控制圆点样式 */
-        .content .question .topic-list li::marker {
-            color: #8B5634;
-            font-size: 1.2em;
+            margin-bottom: 30px;
+            padding: 0 40px;
         }
 
         .content .question .test-box {
-            height: 234px;
+            height: auto;
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             flex-direction: column;
+            align-items: center;
+            gap: 20px;
         }
 
+        /* Radio Button Styles Restored */
         .content .question fieldset {
-            height: 91px;
+            width: 500px;
             border: none;
+            padding: 0;
+            margin: 0;
         }
 
         .content .question fieldset legend {
-            height: 17px;
-            line-height: 17px;
-            font-size: 16px;
+            height: auto;
+            line-height: 1.5;
+            font-size: 18px;
             color: #443D38;
             text-align: left;
+            margin-bottom: 15px;
+            font-weight: bold;
         }
 
         .content .question fieldset label {
             display: block;
-            height: 17px;
-            line-height: 17px;
-            color: #958B84;
+            min-height: 24px;
+            line-height: 24px;
+            color: #8B5634; 
             text-align: left;
             margin-top: 15px;
-            /* label之间的距离 */
-        }
-
-        .content .question fieldset label:first-of-type {
-            margin-top: 25px;
+            cursor: pointer;
+            padding-left: 25px; /* Space for custom radio */
+            position: relative;
         }
 
         .content .question fieldset input[type="radio"] {
             appearance: none;
             -webkit-appearance: none;
             -moz-appearance: none;
-            margin: 2px 2px;
-            margin-right: 6px;
-            width: 13px;
-            height: 13px;
-            border: 1.5px solid #958B84;
-            /* 圆圈的边框颜色（可自定义） */
+            margin: 0;
+            width: 16px;
+            height: 16px;
+            border: 1.5px solid #8B5634;
             border-radius: 50%;
             background-color: transparent;
-            /* 默认为白色填充(透明或白都行) */
-            position: relative;
-            top: 3px;
+            position: absolute;
+            left: 0;
+            top: 4px;
             cursor: pointer;
         }
 
         .content .question fieldset input[type="radio"]:checked::before {
             content: "";
             position: absolute;
-            top: 1.5px;
-            left: 1.5px;
-            width: 7px;
-            height: 7px;
-            background-color: #AA4200;
+            top: 2px;
+            left: 2px;
+            width: 8px;
+            height: 8px;
+            background-color: #8B5634;
             border-radius: 50%;
-            transition: background-color 0.3s ease;
         }
 
-        .content .question fieldset input[type="radio"]:checked+span,
+        .content .question fieldset input[type="radio"]:checked + span,
         .content .question fieldset label:has(input[type="radio"]:checked) {
             color: #AA4200;
+            font-weight: bold;
         }
 
         .page-box {
@@ -205,32 +193,29 @@
 
         .page-box button {
             cursor: pointer;
+            width: 176px;
+            height: 49px;
+            border-radius: 40px;
+            font-size: 22px;
+            text-align: center;
+            line-height: 23px;
+        }
+        
+        .page-box button.disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .page-box .left {
-            width: 176px;
-            height: 49px;
             background: rgba(139, 86, 52, 0.1);
-            border-radius: 40px 40px 40px 40px;
             border: 2px solid #8B5634;
-            font-size: 22px;
             color: #884920;
-            text-align: center;
-            line-height: 23px;
-            padding: 13px 52px;
         }
 
         .page-box .right {
-            width: 176px;
-            height: 49px;
             background: #8B5634;
-            border-radius: 40px 40px 40px 40px;
-            border: 0px;
-            font-size: 22px;
+            border: none;
             color: #FDF6E6;
-            text-align: center;
-            line-height: 23px;
-            padding: 13px 55px;
         }
 
         .img-herb {
@@ -255,6 +240,7 @@
             filter: drop-shadow(0 4px 16px rgba(195, 119, 70, 0.3));
         }
 
+        /* Result Window Styles */
         .window {
             width: 785px;
             height: 661px;
@@ -280,11 +266,7 @@
             right: 108px;
         }
 
-        .window .close-btn svg {
-            display: block;
-        }
-
-        .window h1{
+        .window h1 {
             margin-top: 95px;
             height: 28px;
             line-height: 28px;
@@ -301,43 +283,36 @@
         }
 
         .window .text {
-            margin-left: 47px;
+            margin-left: 20px;
             height: 216px;
-            width: 50px;
+            width: 80px;
             padding-top: 39px;
             padding-bottom: 51px;
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
         }
 
         .window .text h2 {
-            width: 12px;
-            height: 126px;
-            padding: 29px 0px;
-            font-size: 18px;
+            width: auto;
+            font-size: 24px;
             color: #BA4A23;
-            line-height: 17px;
-            text-align: left;
-            font-style: normal;
-            text-transform: none;
-            word-break: break-all;
-            /* overflow-wrap: break-word;
-            -webkit-hyphens: auto;
-            hyphens: auto; */
+            text-align: center;
+            margin-bottom: 20px;
+            font-weight: bold;
         }
 
         .window .text h3 {
             width: 26px;
-            height: 126px;
             font-size: 20px;
             color: #BA4A23;
-            line-height: 21px;
-            text-align: left;
-            font-style: normal;
-            text-transform: none;
+            line-height: 1.2;
+            text-align: center;
+            margin: 0 auto;
         }
 
-        .window .pictext .pic{
+        .window .pictext .pic {
             position: relative;
             width: 321px;
             height: 216px;
@@ -346,24 +321,19 @@
             border: 1px solid #ECD28D;
         }
 
-        .window .pictext .pic h2{
-            width: 42px;
-            height: 21px;
-            font-size: 14px;
+        .window .pictext .pic h2 {
+            font-size: 16px;
             color: #BA4A23;
-            line-height: 21px;
-            text-align: left;
-            font-style: normal;
-            text-transform: none;
             position: absolute;
             top: 12px;
             left: 18px;
         }
 
-        .window .pictext .pic img{
-            margin: 18px 26px 11px 26px;
-            width: 269px;
-            height: 187px;
+        .window .pictext .pic img {
+            margin: 20px auto;
+            display: block;
+            max-height: 180px;
+            max-width: 280px;
         }
 
         .window .list {
@@ -372,35 +342,26 @@
             margin-top: 20px;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
+            overflow-y: auto;
+        }
+
+        .window .list dl {
+            margin-bottom: 15px;
         }
 
         .window .list dl dt {
-            width: 364px;
-            height: 23px;
-            font-weight: normal;
+            width: 100%;
+            font-weight: bold;
             font-size: 18px;
             color: #9D6345;
-            line-height: 23px;
-        }
-
-        .window .list dl dt span{
-            font-family: sans-serif;
-            font-size: 18px;
-            color: #9D6345;
-        }
-
-        .window .list dl dd {
-            margin-left: 0;
-            position: relative;
-            padding-left: 1.4em;
+            margin-bottom: 5px;
         }
 
         .window .list dl dd li {
-            list-style: disc;
+            list-style: none;
             font-size: 16px;
             color: #535353;
-            line-height: 25px;
+            line-height: 1.6;
         }
         
         .overlay {
@@ -409,9 +370,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0,0,0,0.5);
-            z-index: 3;
-            display: none; /* 初始隐藏 */
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 100;
+            display: none;
+            justify-content: center;
+            align-items: center;
         }
     </style>
 </head>
@@ -431,91 +394,243 @@
         <div class="content">
             <div class="spirit"></div>
             <div class="flower"></div>
-            <div class="question">
-                <h2>MBTI中药人格测试题库（12题精编版）</h2>
-                <ul class="topic-list">
-                    <li>E/I维度（外向 vs 内向）</li>
-                </ul>
-                <div class="test-box">
-                    <fieldset>
-                        <legend>1.采药踏险时，你更倾向于？</legend>
-                        <label><input type="radio" name="q1" value="A">A.组队山行，边采药边唱《采薇歌》</label>
-                        <label><input type="radio" name="q1" value="B">B.独自深入老林，记录珍稀药材坐标</label>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>2.学习《本草纲目》的最佳方式是？</legend>
-                        <label><input type="radio" name="q2" value="A">A.参加药农交流会，现场辨药尝百草</label>
-                        <label><input type="radio" name="q2" value="B">B.独坐书斋中研读古籍并撰笔记</label>
-                    </fieldset>
-                </div>
+            <div class="question" id="question-container">
+                <!-- Dynamic Content -->
             </div>
             <div class="flower"></div>
         </div>
         <div class="page-box">
-            <button class="left">上一页</button>
-            <button class="right">提交</button>
+            <button class="left" id="prev-btn" onclick="prevQuestion()">上一页</button>
+            <button class="right" id="next-btn" onclick="nextQuestion()">下一页</button>
         </div>
     </div>
-    <!-- 弹窗与遮罩层 -->
-    <div class="overlay">
+
+    <!-- Result Window -->
+    <div class="overlay" id="result-overlay">
         <div class="window">
-            <button class="close-btn">
+            <button class="close-btn" onclick="location.reload()">
                 <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path
-                        d="M15 30C6.72 30 0 23.28 0 15C0 6.72 6.72 0 15 0C23.28 0 30 6.72 30 15C30 23.28 23.28 30 15 30ZM15 1.425C7.53 1.425 1.425 7.53 1.425 15C1.425 22.47 7.515 28.575 15 28.575C22.485 28.575 28.575 22.485 28.575 15C28.575 7.515 22.47 1.425 15 1.425Z"
-                        fill="#845241" />
-                    <path
-                        d="M16.0809 15L21.7959 9.28504C22.0809 9.00004 22.0809 8.53504 21.7959 8.20504L21.7509 8.16004C21.4659 7.87504 21.0009 7.87504 20.7159 8.16004L15.0009 13.92L9.28594 8.20504C9.00094 7.92004 8.53594 7.92004 8.25094 8.20504L8.20594 8.25004C7.92094 8.53504 7.92094 9.00004 8.20594 9.33004L13.9209 15L8.20594 20.715C7.92094 21 7.92094 21.465 8.20594 21.795L8.25094 21.84C8.53594 22.125 9.00094 22.125 9.28594 21.84L15.0009 16.08L20.7159 21.795C21.0009 22.08 21.4659 22.08 21.7509 21.795L21.7959 21.75C22.0809 21.465 22.0809 21 21.7959 20.67L16.0809 15Z"
-                        fill="#845241" />
+                    <path d="M15 30C6.72 30 0 23.28 0 15C0 6.72 6.72 0 15 0C23.28 0 30 6.72 30 15C30 23.28 23.28 30 15 30ZM15 1.425C7.53 1.425 1.425 7.53 1.425 15C1.425 22.47 7.515 28.575 15 28.575C22.485 28.575 28.575 22.485 28.575 15C28.575 7.515 22.47 1.425 15 1.425Z" fill="#845241" />
+                    <path d="M16.0809 15L21.7959 9.28504C22.0809 9.00004 22.0809 8.53504 21.7959 8.20504L21.7509 8.16004C21.4659 7.87504 21.0009 7.87504 20.7159 8.16004L15.0009 13.92L9.28594 8.20504C9.00094 7.92004 8.53594 7.92004 8.25094 8.20504L8.20594 8.25004C7.92094 8.53504 7.92094 9.00004 8.20594 9.33004L13.9209 15L8.20594 20.715C7.92094 21 7.92094 21.465 8.20594 21.795L8.25094 21.84C8.53594 22.125 9.00094 22.125 9.28594 21.84L15.0009 16.08L20.7159 21.795C21.0009 22.08 21.4659 22.08 21.7509 21.795L21.7959 21.75C22.0809 21.465 22.0809 21 21.7959 20.67L16.0809 15Z" fill="#845241" />
                 </svg>
             </button>
             <h1>草药人格测试结果</h1>
             <div class="pictext">
                 <div class="text">
-                    <h2>ENFP</h2>
-                    <h3>蒲公英型人格</h3>
+                    <h2 id="res-mbti"></h2>
+                    <h3 id="res-herb"></h3>
                 </div>
                 <div class="pic">
-                    <h2>蒲公英</h2>
-                    <img src="../pic/soul/test/pic-result-ENFP.png" alt="ENFP">
+                    <h2 id="res-herb-small"></h2>
+                    <img id="res-img" src="" alt="Result Spirit">
                 </div>
             </div>
-            <div class="list">
-                <dl>
-                    <dt><span>【</span>对应药材<span>】</span></dt>
-                    <dd>
-                        <li>蒲公英（清热解毒·梦想播种机）</li>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt><span>【</span>药性特质<span>】</span></dt>
-                    <dd>
-                        <li>苦甘寒凉，随风播撒，把创新点子种进每寸土地</li>
-                    </dd>
-                </dl>
-                <dl>
-                    <dt><span>【</span>人格解读<span>】</span></dt>
-                    <dd>
-                        <li>你们是创意永动机，像蒲公英乘风传播般点燃团队激情。晨会时能同时抛出“AR本草狼人杀”“AI问诊剧本杀”等12个点子。记得让大黄（INTJ）帮你筛选，否则会陷入“虚火亢盛”。</li>
-                    </dd>
-                </dl>
+            <div class="list" id="res-content">
+                <!-- Content -->
             </div>
         </div>
     </div>
+
     <script>
-        const submitBtn = document.querySelector('.right');
-        const overlay = document.querySelector('.overlay');
-        const closeBtn = document.querySelector('.close-btn');
+        const questions = [
+            { id: 1, text: "1. 采药探险时，你更倾向于？", type: "EI", options: [
+                { text: "A. 组队进山，边采药边唱《采薇歌》", val: "E" },
+                { text: "B. 独自深入老林，记录珍稀药材坐标", val: "I" }
+            ]},
+            { id: 2, text: "2. 学习《本草纲目》的最佳方式是？", type: "EI", options: [
+                { text: "A. 参加药农交流会，现场辨药尝百草", val: "E" },
+                { text: "B. 在藏书阁静心研读古籍善本", val: "I" }
+            ]},
+            { id: 3, text: "3. 面对一味陌生药材，你首先会？", type: "SN", options: [
+                { text: "A. 观察形态、嗅闻气味，对比《药材图鉴》", val: "S" },
+                { text: "B. 联想古籍记载的传说药效，推测用途", val: "N" }
+            ]},
+            { id: 4, text: "4. 制作中药香囊时？", type: "SN", options: [
+                { text: "A. 严格按《雷公炮制论》配比，精确到分", val: "S" },
+                { text: "B. 根据直觉加入自创配方，比如桂花配冰片", val: "N" }
+            ]},
+            { id: 5, text: "5. 发现队友误用毒性药材，你会？", type: "TF", options: [
+                { text: "A. 直接指出错误并展示《毒药考》证据", val: "T" },
+                { text: "B. 悄悄替换药材，事后委婉提醒", val: "F" }
+            ]},
+            { id: 6, text: "6. 给患者开养生方时？", type: "TF", options: [
+                { text: "A. 优先选择疗效确切的经方（如四物汤）", val: "T" },
+                { text: "B. 根据患者情绪定制芳香解郁方（如合欢花茶）", val: "F" }
+            ]},
+            { id: 7, text: "7. 进山采药？", type: "JP", options: [
+                { text: "A. 制定详细计划：路线/工具/应急预案", val: "J" },
+                { text: "B. 带把药锄就出发，相信“本草自有指引”", val: "P" }
+            ]},
+            { id: 8, text: "8. 处理突发瘟疫时？", type: "JP", options: [
+                { text: "A. 按《瘟疫论》既定流程配药分发", val: "J" },
+                { text: "B. 现场尝试新配伍，如大黄+薄荷组合", val: "P" }
+            ]},
+            { id: 9, text: "9. 药房坐诊时遇到质疑？", type: "TF", options: [
+                { text: "A. 用《神农本草经》原文逐条解释", val: "T" },
+                { text: "B. 讲述历代名医用此药救人故事", val: "F" }
+            ]},
+            { id: 10, text: "10. 研发新中成药时？", type: "SN", options: [
+                { text: "A. 系统分析古籍案例（如《千金方》）", val: "N" },
+                { text: "B. 通过患者反馈迭代改进", val: "S" }
+            ]},
+            { id: 11, text: "11. 参加中医药博览会？", type: "EI", options: [
+                { text: "A. 专注听专家讲座记笔记", val: "I" },
+                { text: "B. 主动找药商交换秘方", val: "E" }
+            ]},
+             { id: 12, text: "12. 传承古法炮制技艺？", type: "JP", options: [
+                { text: "A. 严守师门规范（如九蒸九晒）", val: "J" },
+                { text: "B. 融合现代技术（如红外烘干）", val: "P" }
+            ]}
+        ];
 
-        submitBtn.addEventListener('click', () => {
-            overlay.style.display = 'block';
-        });
+        const resultsMap = {
+            "ISTJ": { herb: "黄芩", title: "黄芩型人格", prop: "苦寒清肃，抑火安乱，是系统里负责“温度控制”的角色。", desc: "你们像黄芩一样稳重、冷静、精确，永远把事情做到规范化。危机来了你们清热、降火、灭乱，是真正的“秩序卫士”。但苦寒太久，记得偶尔让自己“加点甜味”。" },
+            "ISFJ": { herb: "黄精", title: "黄精型人格", prop: "甘平柔补，是默默给人能量的存在。", desc: "你们像黄精一样，为团队提供稳定的滋养。细腻温和，但力量很长久。需要注意：少替别人“补”，多给自己“留精”。" },
+            "INFJ": { herb: "金银花", title: "金银花型人格", prop: "甘寒清解，擅察暗流与“伏火”。", desc: "你们像金银花，看得见别人忽略的隐性问题。净化团队情绪、化解神秘暗涌。但别总当“情绪净化器”，也要释放自己。" },
+            "INTJ": { herb: "连翘", title: "连翘型人格", prop: "苦寒善解郁结，最会去除系统堵点。", desc: "你们像连翘一样，清理结构性堵塞、消除无效累赘。你们的存在就是效率本身。只是冷得久了，也要偶尔让自己被“温暖包围”。" },
+            "ISTP": { herb: "苦杏仁", title: "苦杏仁型人格", prop: "苦温下气、止咳利器，专治急症。", desc: "你们像苦杏仁——出手快、动作准、处理效率爆表。各种突发状况都由你们“一键除塞”。记住：别让自己永远处于“应急模式”。" },
+            "ISFP": { herb: "鱼腥草", title: "鱼腥草型人格", prop: "性寒清热，味道独特却疗效奇绝。", desc: "你们像鱼腥草，真实、有个性，被人误解但从不迎合。你们的创意能治最深的“团队炎症”。要学会骄傲于自己的“独特气味”。" },
+            "INFP": { herb: "酸枣", title: "酸枣型人格", prop: "甘平滋心安神，是柔软的治愈力。", desc: "你们像酸枣，让焦躁的人安静，让失眠的心沉定。温柔、内敛、治愈，但容易把焦虑留给自己。记得：心要安，先要护自身。" },
+            "INTP": { herb: "板蓝根", title: "板蓝根型人格", prop: "苦寒清解、逻辑分明，是“系统杀毒软件”。", desc: "你们像板蓝根，出现即净化乱象、消灭逻辑毒素。你们善拆解知识壁垒，擅长冷静推理。但也要提醒自己：世界并不全按 reasoning 运转。" },
+            "ESTP": { herb: "花椒", title: "花椒型人格", prop: "辛温走窜、麻辣刺激，一秒点燃团队血脉。", desc: "你们像花椒——哪里缺气，你们就点火。你们给团队麻辣动力，但有时会“刺激过度”。请记住：辛辣爽快背后，也要懂得节制。" },
+            "ESFP": { herb: "艾草", title: "艾草型人格", prop: "辛温通络、驱寒温暖，有烟火气的草本。", desc: "你们像艾草，出现就让人心安。团队氛围的“温度值担当”。但燃烧自己取暖太久，也需要静静休息。" },
+            "ENFP": { herb: "蒲公英", title: "蒲公英型人格", prop: "苦甘寒凉，随风播撒，把创新点子种进每寸土地", desc: "你们是创意永动机，像蒲公英乘风传播般点燃团队激情。晨会时能同时抛出“AR本草狼人杀”“AI问诊剧本杀”等12个点子。记得让大黄（INTJ）帮你筛选，否则会陷入“虚火亢盛”。" },
+            "ENTP": { herb: "冰片", title: "冰片型人格", prop: "辛凉走窜，提神抗炎，专治思维固化炎症", desc: "你们是概念粉碎机，如同冰片穿透血脑屏障般颠覆认知。能在立项会上连问18个“为什么不试试区块链种黄连”让全场CPU过载。要避免“辛散太过”，找甘草（ISTJ）做你的药性缓冲剂。" },
+            "ESTJ": { herb: "人参", title: "人参型人格", prop: "甘微温，大补元气，为团队注入持久动能", desc: "你们是项目永动机，像人参补气固脱般撑起整个系统。能同时推进开发、预算、公关三线程操作。但谨防“虚不受补”，学会像三七（ISTP）那样精准释放能量。" },
+            "ESFJ": { herb: "红枣", title: "红枣型人格", prop: "甘温归脾胃，养血安神，如妈妈煲的养生汤般熨帖", desc: "你们是团队后勤部长，像红枣滋养气血般照料每个细节。能记住所有人的饮食禁忌，年会抽奖暗箱操作确保新人也得奖。但要警惕“甘味壅中”，别让过度关怀变成甜蜜负担。" },
+            "ENFJ": { herb: "阿胶", title: "阿胶型人格", prop: "甘平质润，补血养颜，如月光般温柔照亮成长之路", desc: "你们是职场人生教练，像阿胶润泽干裂般疗愈团队创伤。能察觉实习生强颜欢笑下的迷茫，用“我年轻时也…”开启深度对话。记住，滋补药材也需“烊化”，适时展露脆弱更真实。" },
+            "ENTJ": { herb: "附子", title: "附子型人格", prop: "辛热大毒，破阴回阳，危局中力挽狂澜的终极武器", desc: "你们是商业战场拿破仑，像附子对抗心衰般拯救濒死项目。能在资金链断裂前夜谈成融资，用“要么All in要么滚”点燃团队。但需配伍干姜（ESFJ）调和毒性，避免灼伤人心。" }
+        };
 
-        closeBtn.addEventListener('click', () => {
-            overlay.style.display = 'none';
-        });
-    </script>  
+        let currentQuestionIdx = 0;
+        let selections = new Array(questions.length).fill(null); // Store answers
+
+        const questionContainer = document.getElementById('question-container');
+        const overlay = document.getElementById('result-overlay');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+
+        renderQuestion();
+
+        function renderQuestion() {
+            questionContainer.innerHTML = '';
+            
+            // Loop for up to 2 questions
+            for (let i = 0; i < 2; i++) {
+                const idx = currentQuestionIdx + i;
+                if (idx >= questions.length) break;
+
+                const q = questions[idx];
+                
+                // Build Fieldset HTML with margin
+                questionContainer.innerHTML += `
+                    <fieldset style="margin-bottom: 40px;">
+                        <legend>${q.text}</legend>
+                        <label>
+                            <input type="radio" name="q${q.id}" value="${q.options[0].val}" 
+                             ${selections[idx] === q.options[0].val ? 'checked' : ''} 
+                             onchange="handleSelection(${idx}, '${q.options[0].val}')">
+                             ${q.options[0].text}
+                        </label>
+                        <label>
+                            <input type="radio" name="q${q.id}" value="${q.options[1].val}" 
+                             ${selections[idx] === q.options[1].val ? 'checked' : ''} 
+                             onchange="handleSelection(${idx}, '${q.options[1].val}')">
+                             ${q.options[1].text}
+                        </label>
+                    </fieldset>
+                `;
+            }
+
+            updateButtons();
+        }
+
+        function handleSelection(idx, val) {
+            selections[idx] = val;
+            updateButtons();
+        }
+
+        function updateButtons() {
+            // Update Text
+            if (currentQuestionIdx + 2 >= questions.length) {
+                nextBtn.innerText = "提交";
+            } else {
+                nextBtn.innerText = "下一页";
+            }
+
+            // Enable/Disable Prev
+            prevBtn.disabled = currentQuestionIdx === 0;
+            if (prevBtn.disabled) prevBtn.classList.add('disabled');
+            else prevBtn.classList.remove('disabled');
+
+            // Enable/Disable Next (Must answer ALL on page)
+            let allAnswered = true;
+            for (let i = 0; i < 2; i++) {
+                const idx = currentQuestionIdx + i;
+                if (idx < questions.length) {
+                    if (selections[idx] === null) allAnswered = false;
+                }
+            }
+            
+            nextBtn.disabled = !allAnswered;
+            if (nextBtn.disabled) nextBtn.classList.add('disabled');
+            else nextBtn.classList.remove('disabled');
+        }
+
+        function prevQuestion() {
+            if (currentQuestionIdx - 2 >= 0) {
+                currentQuestionIdx -= 2;
+                renderQuestion();
+            }
+        }
+
+        function nextQuestion() {
+            if (currentQuestionIdx + 2 < questions.length) {
+                currentQuestionIdx += 2;
+                renderQuestion();
+            } else {
+                showResult();
+            }
+        }
+
+        function showResult() {
+            // Calculate Scores
+            let scores = { E: 0, I: 0, S: 0, N: 0, T: 0, F: 0, J: 0, P: 0 };
+            selections.forEach(val => { scores[val]++; });
+
+            const e_i = scores.E >= scores.I ? 'E' : 'I';
+            const s_n = scores.S >= scores.N ? 'S' : 'N';
+            const t_f = scores.T >= scores.F ? 'T' : 'F';
+            const j_p = scores.J >= scores.P ? 'J' : 'P';
+            
+            const mbti = e_i + s_n + t_f + j_p;
+            const resultData = resultsMap[mbti];
+
+            if (resultData) {
+                document.getElementById('res-mbti').innerText = mbti;
+                document.getElementById('res-herb').innerText = resultData.title;
+                document.getElementById('res-herb-small').innerText = resultData.herb;
+                document.getElementById('res-img').src = `../pic/soul/spirits/${resultData.herb}.png`;
+                
+                document.getElementById('res-content').innerHTML = `
+                    <dl>
+                         <dt><span>【</span>对应药材<span>】</span></dt>
+                         <dd><li>${resultData.herb}</li></dd>
+                    </dl>
+                    <dl>
+                         <dt><span>【</span>药性特质<span>】</span></dt>
+                         <dd><li>${resultData.prop}</li></dd>
+                    </dl>
+                    <dl>
+                         <dt><span>【</span>人格解读<span>】</span></dt>
+                         <dd><li>${resultData.desc}</li></dd>
+                    </dl>
+                `;
+                
+                overlay.style.display = 'flex';
+            }
+        }
+    </script>
 </body>
 
 </html>
