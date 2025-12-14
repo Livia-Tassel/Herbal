@@ -286,7 +286,8 @@
                     <path d="M16.0809 15L21.7959 9.28504C22.0809 9.00004 22.0809 8.53504 21.7959 8.20504L21.7509 8.16004C21.4659 7.87504 21.0009 7.87504 20.7159 8.16004L15.0009 13.92L9.28594 8.20504C9.00094 7.92004 8.53594 7.92004 8.25094 8.20504L8.20594 8.25004C7.92094 8.53504 7.92094 9.00004 8.20594 9.33004L13.9209 15L8.20594 20.715C7.92094 21 7.92094 21.465 8.20594 21.795L8.25094 21.84C8.53594 22.125 9.00094 22.125 9.28594 21.84L15.0009 16.08L20.7159 21.795C21.0009 22.08 21.4659 22.08 21.7509 21.795L21.7959 21.75C22.0809 21.465 22.0809 21 21.7959 20.67L16.0809 15Z" fill="#845241" />
                 </svg>
             </button>
-            <div id="assistantAnswerContent" style="width: 539px; margin-top: 25px; text-align: left; height: 400px; overflow-y: auto;">
+            <h2 id="assistantAnswerTitle" style="color: #BA4A23; font-size: 26px; margin-top: 95px; margin-bottom: 30px; text-align: center;"></h2>
+            <div id="assistantAnswerContent" style="width: 539px; text-align: left; height: 380px; overflow-y: auto; padding-right: 10px;">
                 <!-- Content injected here -->
             </div>
         </div>
@@ -461,11 +462,14 @@
 
             const overlay = document.getElementById('assistantLinkOverlay');
             const content = document.getElementById('assistantAnswerContent');
+            const titleElem = document.getElementById('assistantAnswerTitle');
             
             if (bestMatch && maxMatches > 0) {
-                content.innerHTML = `<h2 style="color: #BA4A23; font-size: 24px; margin-bottom: 75px; text-align: center;">${bestMatch.title}</h2><p style="color: #535353; font-size: 18px; line-height: 1.8;">${bestMatch.content}</p>`;
+                titleElem.innerText = bestMatch.title;
+                content.innerHTML = `<p style="color: #535353; font-size: 18px; line-height: 1.8;">${bestMatch.content}</p>`;
             } else {
-                content.innerHTML = `<h2 style="color: #BA4A23; font-size: 24px; margin-bottom: 75px; text-align: center;">仙灵未解</h2><p style="color: #535353; font-size: 18px; line-height: 1.8;">仙灵暂未参透此问，请尝试更换关键词，或切换模式提问。<br>（提示：您可以尝试包含关键词如“食补”、“养生”、“上火”等）</p>`;
+                titleElem.innerText = "仙灵未解";
+                content.innerHTML = `<p style="color: #535353; font-size: 18px; line-height: 1.8;">仙灵暂未参透此问，请尝试更换关键词，或切换模式提问。<br>（提示：您可以尝试包含关键词如“食补”、“养生”、“上火”等）</p>`;
             }
             overlay.style.display = 'flex';
         }
