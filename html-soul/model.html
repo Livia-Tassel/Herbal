@@ -472,6 +472,22 @@
                 });
             }
         }
+
+        function showAnswer(data) {
+            const overlay = document.getElementById('answerOverlay');
+            const answerText = document.getElementById('answerText');
+            
+            answerText.innerHTML = `
+                <h2>${data.title}</h2>
+                <p>${data.content}</p>
+            `;
+            
+            overlay.style.display = 'flex';
+        }
+
+        function closePopup() {
+            document.getElementById('answerOverlay').style.display = 'none';
+        }
     </script>
 </body>
 
