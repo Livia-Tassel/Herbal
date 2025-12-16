@@ -2,6 +2,7 @@
 <html lang="en">
 
 <head>
+    <link rel="shortcut icon" href="../favicon.ico">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../css/base.css">
@@ -68,7 +69,7 @@
         }
 
         .nav {
-            width: 858px;
+            width: 750px;
             height: 40px;
             display: flex;
             justify-content: space-between;
@@ -84,18 +85,6 @@
             width: 132px;
             height: 40px;
             background-image: url(../pic/interact/video/pic-box4.png);
-        }
-
-        .nav .box7 {
-            width: 186px;
-            height: 40px;
-            background-image: url(../pic/interact/video/pic-box7.png);
-        }
-
-        .nav .box5 {
-            width: 150px;
-            height: 40px;
-            background-image: url(../pic/interact/video/pic-box5.png);
         }
 
         .content {
@@ -152,6 +141,18 @@
             text-align: center;
         }
 
+        .modal-overlay .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 30px;
+            color: #8B5634;
+            cursor: pointer;
+            z-index: 10;
+            font-weight: bold;
+            line-height: 1;
+        }
+
         .img-herb {
             position: absolute;
             width: 247px;
@@ -174,24 +175,21 @@
             </a>
             <div class="text-box">
                 <h3>趣味互动</h3>
-                <h2>视频咨讯</h2>
+                <h2>百草解说</h2>
             </div>
         </div>
         <div class="nav">
-            <a href="#">
-                <div class="box5">本草动画志</div>
+            <a href="javascript:void(0)" onclick="openPoster(0)">
+                <div class="box4">连翘</div>
             </a>
-            <a href="#">
-                <div class="box4">药典新说</div>
+            <a href="javascript:void(0)" onclick="openPoster(1)">
+                <div class="box4">金银花</div>
             </a>
-            <a href="#">
-                <div class="box5">养生小锦囊</div>
+            <a href="javascript:void(0)" onclick="openPoster(2)">
+                <div class="box4">苦杏仁</div>
             </a>
-            <a href="#">
-                <div class="box7">药材的前世今生</div>
-            </a>
-            <a href="#">
-                <div class="box5">古法生活志</div>
+            <a href="javascript:void(0)" onclick="openPoster(3)">
+                <div class="box4">黄芩</div>
             </a>
         </div>
         <div class="content">
@@ -199,20 +197,24 @@
             <div class="list" id="herb-list">
                 <!-- Dynamically populated or Static with clicks -->
                 <div class="box">
-                    <a href="javascript:void(0)" onclick="openVideo(0)"><img src="../pic/interact/video/1-连翘.png" alt=""></a>
-                    <a href="javascript:void(0)" onclick="openPoster(0)"><h2>连翘</h2></a>
+                    <a href="javascript:void(0)" onclick="openVideo(0)"><img src="../pic/interact/video/1-连翘.png"
+                            alt=""></a>
+                    <h2>连翘</h2>
                 </div>
                 <div class="box">
-                    <a href="javascript:void(0)" onclick="openVideo(1)"><img src="../pic/interact/video/2-金银花.png" alt=""></a>
-                    <a href="javascript:void(0)" onclick="openPoster(1)"><h2>金银花</h2></a>
+                    <a href="javascript:void(0)" onclick="openVideo(1)"><img src="../pic/interact/video/2-金银花.png"
+                            alt=""></a>
+                    <h2>金银花</h2>
                 </div>
                 <div class="box">
-                    <a href="javascript:void(0)" onclick="openVideo(2)"><img src="../pic/interact/video/3-苦杏仁.png" alt=""></a>
-                    <a href="javascript:void(0)" onclick="openPoster(2)"><h2>苦杏仁</h2></a>
+                    <a href="javascript:void(0)" onclick="openVideo(2)"><img src="../pic/interact/video/3-苦杏仁.png"
+                            alt=""></a>
+                    <h2>苦杏仁</h2>
                 </div>
                 <div class="box">
-                    <a href="javascript:void(0)" onclick="openVideo(3)"><img src="../pic/interact/video/4-黄岑.png" alt=""></a>
-                    <a href="javascript:void(0)" onclick="openPoster(3)"><h2>黄芩</h2></a>
+                    <a href="javascript:void(0)" onclick="openVideo(3)"><img src="../pic/interact/video/4-黄岑.png"
+                            alt=""></a>
+                    <h2>黄芩</h2>
                 </div>
             </div>
             <div class="flower"></div>
@@ -228,8 +230,12 @@
                 <div class="ctrl-layer" id="ctrlLayer">
                     <div class="center-btn" id="playPauseBtn">
                         <svg width="80" height="80" viewBox="0 0 80 80" fill="none">
-                            <path d="M40.0009 2.95996C19.6289 2.95996 2.96094 19.632 2.96094 40C2.96094 60.368 19.6289 77.04 40.0009 77.04C60.3729 77.04 77.0409 60.372 77.0409 40C77.0409 19.628 60.3689 2.95996 40.0009 2.95996ZM40.0009 73.952C21.3289 73.952 6.04894 58.672 6.04894 40C6.04894 21.328 21.3289 6.04796 40.0009 6.04796C58.6729 6.04796 73.9529 21.328 73.9529 40C73.9529 58.672 58.6729 73.952 40.0009 73.952Z" fill="white" />
-                            <path d="M51.6193 34.7201L38.9993 26.4801C34.7393 23.6801 31.1113 25.5481 31.1113 30.6761V49.3161C31.1113 54.4441 34.5793 56.3081 38.9993 53.5121L51.6193 45.2801C55.8793 42.1721 55.8793 37.5121 51.6193 34.7121V34.7201Z" fill="white" />
+                            <path
+                                d="M40.0009 2.95996C19.6289 2.95996 2.96094 19.632 2.96094 40C2.96094 60.368 19.6289 77.04 40.0009 77.04C60.3729 77.04 77.0409 60.372 77.0409 40C77.0409 19.628 60.3689 2.95996 40.0009 2.95996ZM40.0009 73.952C21.3289 73.952 6.04894 58.672 6.04894 40C6.04894 21.328 21.3289 6.04796 40.0009 6.04796C58.6729 6.04796 73.9529 21.328 73.9529 40C73.9529 58.672 58.6729 73.952 40.0009 73.952Z"
+                                fill="white" />
+                            <path
+                                d="M51.6193 34.7201L38.9993 26.4801C34.7393 23.6801 31.1113 25.5481 31.1113 30.6761V49.3161C31.1113 54.4441 34.5793 56.3081 38.9993 53.5121L51.6193 45.2801C55.8793 42.1721 55.8793 37.5121 51.6193 34.7121V34.7201Z"
+                                fill="white" />
                         </svg>
                     </div>
                 </div>
@@ -246,10 +252,22 @@
     <!-- Poster Modal -->
     <div class="modal-overlay" id="posterModal">
         <div class="modal-content poster-content">
-            <div class="close-btn" onclick="closeModal('posterModal')">×</div>
+            <!-- 新的关闭按钮，使用SVG图标 -->
+            <button class="close-btn" onclick="closeModal('posterModal')">
+                <svg width="30" height="30" viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                        d="M15 30C6.72 30 0 23.28 0 15C0 6.72 6.72 0 15 0C23.28 0 30 6.72 30 15C30 23.28 23.28 30 15 30ZM15 1.425C7.53 1.425 1.425 7.53 1.425 15C1.425 22.47 7.515 28.575 15 28.575C22.485 28.575 28.575 22.485 28.575 15C28.575 7.515 22.47 1.425 15 1.425Z"
+                        fill="#845241" />
+                    <path
+                        d="M16.0809 15L21.7959 9.28504C22.0809 9.00004 22.0809 8.53504 21.7959 8.20504L21.7509 8.16004C21.4659 7.87504 21.0009 7.87504 20.7159 8.16004L15.0009 13.92L9.28594 8.20504C9.00094 7.92004 8.53594 7.92004 8.25094 8.20504L8.20594 8.25004C7.92094 8.53504 7.92094 9.00004 8.20594 9.33004L13.9209 15L8.20594 20.715C7.92094 21 7.92094 21.465 8.20594 21.795L8.25094 21.84C8.53594 22.125 9.00094 22.125 9.28594 21.84L15.0009 16.08L20.7159 21.795C21.0009 22.08 21.4659 22.08 21.7509 21.795L21.7959 21.75C22.0809 21.465 22.0809 21 21.7959 20.67L16.0809 15Z"
+                        fill="#845241" />
+                </svg>
+            </button>
             <img id="modalPoster" src="" alt="Poster">
         </div>
     </div>
+
+
 
     <style>
         /* Modal Styles */
@@ -259,24 +277,27 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.85); /* Dark background */
+            background: rgba(0, 0, 0, 0.85);
+            /* Dark background */
             z-index: 1000;
-            display: none; /* Hidden by default */
+            display: none;
+            /* Hidden by default */
             justify-content: center;
             align-items: center;
         }
 
         .modal-content {
             position: relative;
-            background: #E8DBBD url(../pic/pic-background.png); /* Theme color + Texture */
+            background: #E8DBBD url(../pic/pic-background.png);
+            /* Theme color + Texture */
             border-radius: 10px;
             padding: 20px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
             max-width: 90%;
             max-height: 90vh;
             overflow-y: auto;
         }
-        
+
         /* Video Pop Content Size - Matched to video.html logical size but scaled down slightly if needed */
         .video-content {
             width: 960px;
@@ -286,38 +307,61 @@
             background: #E8DBBD url(../pic/pic-background.png);
         }
 
-        /* Poster Content Size */
+        /* Updated Poster Content Size */
         .poster-content {
-            background: transparent;
-            box-shadow: none;
-            padding: 0;
-            text-align: center;
-        }
-        
-        .poster-content img {
-            max-width: 80vw;
-            max-height: 90vh;
-            border-radius: 8px;
-            box-shadow: 0 0 15px rgba(0,0,0,0.5);
+            width: 688px;
+            height: 721px;
+            background-image: url(../pic/interact/video/pic-window.png);
+            background-repeat: no-repeat;
+            background-size: 100% 100%; /* 确保背景图完全填充指定尺寸 */
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            background-color: transparent; /* 确保没有背景色 */
+            box-shadow: none; /* 移除阴影 */
+            padding: 0; /* 移除内边距 */
+            max-width: none; /* 移除最大宽度限制 */
+            max-height: none; /* 移除最大高度限制 */
+            overflow-y: hidden; /* 防止内容溢出时出现滚动条 */
+            /* text-align: center; 可以移除，因为 flex 布局已经处理了内容居中 */
         }
 
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            font-size: 30px;
-            color: #8B5634;
-            cursor: pointer;
-            z-index: 10;
-            font-weight: bold;
-            line-height: 1;
-        }
-        
         .poster-content .close-btn {
-            color: #fff;
-            right: -30px;
-            top: -10px;
+            width: 30px; /* 新宽度 */
+            height: 30px; /* 新高度 */
+            padding: 0; /* 新内边距 */
+            border: none; /* 移除边框 */
+            background: transparent; /* 移除背景 */
+            line-height: 0; /* 确保SVG垂直对齐 */
+            top: 94px; /* 新的顶部定位 */
+            right: 108px; /* 新的右侧定位 */
+            position: absolute;
+            /* 覆盖通用 .close-btn 样式中与SVG无关的属性 */
+            font-size: 0; /* 隐藏可能存在的文字“x” */
+            color: transparent; /* 确保文字颜色透明 */
+            font-weight: normal; /* 移除粗体 */
+            cursor: pointer;
         }
+
+        /* 确保关闭按钮内的SVG正确显示 */
+        .poster-content .close-btn svg {
+            display: block;
+        }
+
+        /* 针对 poster 弹窗内图片的样式 */
+        .poster-content img#modalPoster { /* 使用ID选择器提高特异性 */
+            width: 370px; /* 新宽度 */
+            margin: 104px 138px 65px 150px; /* 新外边距 */
+
+            /* 覆盖原有的冲突样式 */
+            max-width: none;
+            max-height: none;
+            border-radius: 0; /* 移除圆角 */
+            box-shadow: none; /* 移除阴影 */
+        }
+
 
         /* Reusing Video CSS from video.html with tweaks */
         .video-box {
@@ -335,7 +379,8 @@
         }
 
         .video-content h3 {
-            font-size: 16px; /* Slightly smaller for popup text */
+            font-size: 16px;
+            /* Slightly smaller for popup text */
             color: #535151;
             line-height: 1.6;
             text-align: left;
@@ -351,9 +396,11 @@
             height: 100%;
             transition: background .3s;
         }
+
         .ctrl-layer.paused {
             background: rgba(0, 0, 0, .55);
         }
+
         .center-btn {
             position: absolute;
             left: 50%;
@@ -363,13 +410,16 @@
             opacity: 0;
             transition: opacity .3s, transform .3s;
         }
+
         .ctrl-layer.paused .center-btn {
             opacity: 1;
             transform: translate(-50%, -50%) scale(1.1);
         }
+
         .center-btn:hover {
             transform: translate(-50%, -50%) scale(1.2);
         }
+
         .progress-bar {
             position: absolute;
             left: 0;
@@ -379,6 +429,7 @@
             background: rgba(255, 255, 255, .25);
             cursor: pointer;
         }
+
         .progress-fill {
             height: 100%;
             width: 0;
@@ -429,10 +480,10 @@
             document.getElementById('modalTitle').innerText = data.name;
             document.getElementById('modalDesc').innerText = data.desc;
             v.src = data.video;
-            
+
             document.getElementById('videoModal').style.display = 'flex';
             // Default: Paused state
-            box.classList.add('paused'); 
+            box.classList.add('paused');
         }
 
         function openPoster(index) {
@@ -443,7 +494,7 @@
 
         function closeModal(modalId) {
             document.getElementById(modalId).style.display = 'none';
-            if(modalId === 'videoModal') {
+            if (modalId === 'videoModal') {
                 v.pause();
                 v.src = ""; // Stop buffering
                 box.classList.add('paused'); // Reset UI
@@ -463,22 +514,22 @@
         v.addEventListener('pause', () => box.classList.add('paused'));
 
         v.addEventListener('timeupdate', () => {
-            if(v.duration) {
+            if (v.duration) {
                 fill.style.width = (v.currentTime / v.duration * 100).toFixed(2) + '%';
             }
         });
 
         bar.addEventListener('click', e => {
-            if(v.duration) {
+            if (v.duration) {
                 v.currentTime = e.offsetX / bar.offsetWidth * v.duration;
             }
         });
-        
+
         // Optional: Close modal on outside click
-        window.onclick = function(event) {
+        window.onclick = function (event) {
             if (event.target.classList.contains('modal-overlay')) {
                 event.target.style.display = "none";
-                if(event.target.id === 'videoModal') {
+                if (event.target.id === 'videoModal') {
                     v.pause();
                     v.src = "";
                     box.classList.add('paused');

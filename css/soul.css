@@ -105,6 +105,16 @@ body {
     background-image: url(../pic/soul/svg-vbox.svg);
     align-content:center;
     align-items:center;
+    position: relative;
+}
+
+.content-down .cards .card .ar{
+    display: block;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 25px;
+    left: 25px;
 }
 
 .content-down .cards .card .up-icon {
