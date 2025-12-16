@@ -31,6 +31,9 @@ body {
   background-image: url(../pic/pic-background.png);
   background-repeat: repeat;
   background-position: center top;
+}
+
+.content {
   animation: slideUp 0.5s ease-out;
 }
 
