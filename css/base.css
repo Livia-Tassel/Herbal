@@ -31,15 +31,17 @@ body {
   background-image: url(../pic/pic-background.png);
   background-repeat: repeat;
   background-position: center top;
-  animation: fadeIn 0.4s ease-in;
+  animation: slideUp 0.5s ease-out;
 }
 
-@keyframes fadeIn {
+@keyframes slideUp {
   from {
     opacity: 0;
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
+    transform: translateY(0);
   }
 }
 
